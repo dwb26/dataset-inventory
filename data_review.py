@@ -1131,130 +1131,83 @@ data = [
 # Create DataFrame
 df = pd.DataFrame(data)[columns]
 
+# --- Dynamic Link Mapping ---
+url_map = {
+    "2021 Census": "https://www.ons.gov.uk/census",
+    "Understanding Society": "https://www.understandingsociety.ac.uk/",
+    "Nomis (Official Labour Market Statistics/ONS Data Portal)": (
+        "https://www.nomisweb.co.uk/"
+    ),
+    "Labour Force Survey": (
+        "https://www.ons.gov.uk/surveys/informationforhouseholdsandindividuals/householdsurveys/labourforcesurveys"
+    ),
+    "National Travel Survey": (
+        "https://www.gov.uk/government/collections/national-travel-survey-statistics"
+    ),
+    "UK-AIR": "https://uk-air.defra.gov.uk/",
+    "IMD": (
+        "https://www.gov.uk/government/collections/english-indices-of-deprivation"
+    ),
+    "Met Office Climate Data Portal": (
+        "https://www.metoffice.gov.uk/services/data/dataportal"
+    ),
+    "Defra Data Services Platform": (
+        "https://environment.data.gov.uk/"
+    ),
+    "Ordnance Survey Data Products": (
+        "https://osdatahub.os.uk/"
+    ),
+    "Hospital Episode Statistics (HES)": (
+        "https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics"
+    ),
+    "Quality and Outcomes Framework": (
+        "https://digital.nhs.uk/data-and-information/publications/statistical/quality-and-outcomes-framework-achievement-prevalence-and-exceptions-data"
+    ),
+    "ONS Mortality Statistics": (
+        "https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths"
+    ),
+    "GPES/EPD": (
+        "https://digital.nhs.uk/services/general-practice-extraction-service-gpes"
+    ),
+    "English Prescribing Data (EPD)": (
+        "https://www.nhsbsa.nhs.uk/prescription-data/dispensing-data/english-prescribing-data-epd"
+    ),
+    "Adult Psychiatric Morbidity Survey (APMS)": (
+        "https://digital.nhs.uk/data-and-information/publications/statistical/adult-psychiatric-morbidity-survey"
+    ),
+    "Clinical Practice Research Datalink (CPRD)": (
+        "https://cprd.com/"
+    ),
+    "Health Survey for England (HSE)": (
+        "https://digital.nhs.uk/data-and-information/publications/statistical/health-survey-for-england"
+    ),
+    "National Survey for Wales": (
+        "https://www.gov.wales/national-survey-wales"
+    ),
+    "Scottish Health Survey (SHeS)": (
+        "https://www.gov.scot/collections/scottish-health-survey/"
+    ),
+    "Living Costs and Food Survey (LCFS)": (
+        "https://www.ons.gov.uk/surveys/informationforhouseholdsandindividuals/householdsurveys/livingcostsandfoodsurveylcfs"
+    ),
+    "National Diet and Nutrition Survey (NDNS)": (
+        "https://www.gov.uk/government/collections/national-diet-and-nutrition-survey"
+    ),
+}
 
-# --- OPTION 1 IMPLEMENTATION: FORMATTER & HTML GENERATOR ---
-
-
-def format_expandable_cell(cell, character_threshold=45):
-    """Wraps text in an HTML <details> tag if it exceeds character_threshold."""
-    text = str(cell).strip()
-    if not text:
-        return ""
-
-    if len(text) > character_threshold:
-        # Create a clean truncated label for the summary
-        summary_preview = text[:character_threshold] + "..."
-        return (
-            f"<details><summary>🔍 <b>{summary_preview}</b></summary>"
-            f"<p style='margin: 6px 0 0 0; font-weight: normal; color:"
-            f" #24292e;'>{text}</p></details>"
-        )
-
-    return text
-
-
-# Apply formatting across all cells in the DataFrame
-df_expandable = df.copy()
-for col in df_expandable.columns:
-    df_expandable[col] = df_expandable[col].apply(
-        lambda x: format_expandable_cell(x, character_threshold=45)
+# Wrap Dataset names in HTML anchors using the map
+df["Dataset"] = df["Dataset"].apply(
+    lambda name: (
+        f'<a href="{url_map[name]}" target="_blank" rel="noopener'
+        f' noreferrer">{name}</a>'
+        if name in url_map
+        else name
     )
+)
 
-# Render raw HTML table without escaping tags
-html_table = df_expandable.to_html(escape=False, index=False)
+# Export to HTML string (escape=False ensures raw <a> tags are rendered by browsers)
+html_output = df.to_html(escape=False, index=False)
 
-# Wrap inside a styled, standalone HTML document
-full_html_document = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Data Mapping Framework Inventory</title>
-    <style>
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 20px;
-            background-color: #f8f9fa;
-            color: #333;
-        }}
-        h2 {{
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #0f62fe;
-        }}
-        p.subtitle {{
-            color: #6e6e6e;
-            font-size: 14px;
-            margin-top: -8px;
-            margin-bottom: 20px;
-        }}
-        .table-container {{
-            overflow-x: auto;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border: 1px solid #e0e0e0;
-        }}
-        table {{
-            border-collapse: collapse;
-            width: 100%;
-            font-size: 13px;
-            white-space: nowrap;
-        }}
-        th {{
-            background-color: #0f62fe;
-            color: #ffffff;
-            font-weight: 600;
-            text-align: left;
-            padding: 10px 14px;
-            border-bottom: 2px solid #0043ce;
-            position: sticky;
-            top: 0;
-        }}
-        td {{
-            padding: 8px 12px;
-            border-bottom: 1px solid #e0e0e0;
-            vertical-align: top;
-        }}
-        tr:nth-child(even) {{
-            background-color: #f4f7fb;
-        }}
-        tr:hover {{
-            background-color: #e8f0fe;
-        }}
-        details {{
-            cursor: pointer;
-            white-space: normal;
-            max-width: 300px;
-        }}
-        summary {{
-            color: #0f62fe;
-            outline: none;
-            font-size: 12px;
-        }}
-        summary:hover {{
-            text-decoration: underline;
-        }}
-        details[open] {{
-            background: #ffffff;
-            padding: 6px;
-            border-radius: 4px;
-            border: 1px solid #d0d7de;
-        }}
-    </style>
-</head>
-<body>
-    <h2>Data Mapping Framework Inventory</h2>
-    <p class="subtitle">Click on any condensed cell (🔍) to expand and view full narrative descriptions inline.</p>
-    <div class="table-container">
-        {html_table}
-    </div>
-</body>
-</html>
-"""
-
-# Save to file
-output_file = "index.html"
-with open(output_file, "w", encoding="utf-8") as f:
-    f.write(full_html_document)
-
-print(f"Successfully generated '{output_file}'!")
+# Write out to HTML file
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_output)
