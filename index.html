@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Mapping Framework Inventory</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h2 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #0f62fe;
+        }
+        p.subtitle {
+            color: #6e6e6e;
+            font-size: 14px;
+            margin-top: -8px;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e0e0e0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+        th {
+            background-color: #0f62fe;
+            color: #ffffff;
+            font-weight: 600;
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 2px solid #0043ce;
+            position: sticky;
+            top: 0;
+        }
+        td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+        tr:nth-child(even) {
+            background-color: #f4f7fb;
+        }
+        tr:hover {
+            background-color: #e8f0fe;
+        }
+        details {
+            cursor: pointer;
+            white-space: normal;
+            max-width: 300px;
+        }
+        summary {
+            color: #0f62fe;
+            outline: none;
+            font-size: 12px;
+        }
+        summary:hover {
+            text-decoration: underline;
+        }
+        details[open] {
+            background: #ffffff;
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #d0d7de;
+        }
+    </style>
+</head>
+<body>
+    <h2>Data Mapping Framework Inventory</h2>
+    <p class="subtitle">Click on any condensed cell (🔍) to expand and view full narrative descriptions inline.</p>
+    <div class="table-container">
+        <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Dataset</th>
+      <th>Organisation</th>
+      <th>Country</th>
+      <th>Years available</th>
+      <th>Update frequency</th>
+      <th>Geographical level</th>
+      <th>Unit of observation</th>
+      <th>Population covered</th>
+      <th>Main domains/variables</th>
+      <th>Access</th>
+      <th>Typical role</th>
+      <th>Strengths</th>
+      <th>Limitations</th>
+      <th>Example applications</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2021 Census</td>
+      <td>ONS</td>
+      <td>England/Wales</td>
+      <td>2021 (2011 for comparison)</td>
+      <td>10-yearly</td>
+      <td>OA, LSOA, MSOA, LA</td>
+      <td>Individual/Household (aggregated)</td>
+      <td>Whole population</td>
+      <td><details><summary>🔍 <b>Age, sex, ethnicity, education, tenure, house...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Age, sex, ethnicity, education, tenure, household type, employment</p></details></td>
+      <td>Open</td>
+      <td>Population frame / Constraints</td>
+      <td>Complete coverage</td>
+      <td>Infrequent updates</td>
+      <td>Base population synthesis</td>
+    </tr>
+    <tr>
+      <td>Understanding Society</td>
+      <td>ISER</td>
+      <td>UK</td>
+      <td>2009–present</td>
+      <td>Annual</td>
+      <td>Individual (geo under licence)</td>
+      <td>Individual</td>
+      <td>Household survey</td>
+      <td><details><summary>🔍 <b>Health, income, education, employment, wellbe...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Health, income, education, employment, wellbeing</p></details></td>
+      <td>Secure licence</td>
+      <td>Donor microdata</td>
+      <td>Rich longitudinal data</td>
+      <td>Sample survey</td>
+      <td>Synthetic population enrichment</td>
+    </tr>
+    <tr>
+      <td><details><summary>🔍 <b>Nomis (Official Labour Market Statistics/ONS ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Nomis (Official Labour Market Statistics/ONS Data Portal)</p></details></td>
+      <td>ONS</td>
+      <td>UK</td>
+      <td><details><summary>🔍 <b>Variable. Covers historic censuses (going bac...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Variable. Covers historic censuses (going back decades) up to contemporary, near real-time monthly data.</p></details></td>
+      <td><details><summary>🔍 <b>Variable depending on the underlying set. Ran...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Variable depending on the underlying set. Ranges from Monthly (e.g. Claimaint Counts) to Quarterly/Annual (e.g. Annual Population Survey) to 10-yearly (Census data)</p></details></td>
+      <td><details><summary>🔍 <b>Scalable from Country/Regional down to Local ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Scalable from Country/Regional down to Local Authority, Ward, and Output Area (OA/LSOA/MSOA) levels.</p></details></td>
+      <td><details><summary>🔍 <b>Primarily Aggregated data (counts, rates and ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Primarily Aggregated data (counts, rates and percentages for specific geographic boundaries), though derived from individual microdata responses</p></details></td>
+      <td>Whole UK population/UK resident workforce.</td>
+      <td><details><summary>🔍 <b>Employment rates, unemployment dynamics, earn...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Employment rates, unemployment dynamics, earnings, qualifications, industry/occupational sectors, benefit claimaints, and local household characteristics.</p></details></td>
+      <td>Open</td>
+      <td><details><summary>🔍 <b>Donor Microdata proxy/Population Frame Constr...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Donor Microdata proxy/Population Frame Constraints/Policy Application</p></details></td>
+      <td><details><summary>🔍 <b>Free, offers granular local-area geographic b...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Free, offers granular local-area geographic breakdowns</p></details></td>
+      <td><details><summary>🔍 <b>Data is strictly aggregated to preserve priva...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Data is strictly aggregated to preserve privacy. Cannot download the raw microdata without secure lab access.</p></details></td>
+      <td><details><summary>🔍 <b>Providing localised socioeconomic benchmarks ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Providing localised socioeconomic benchmarks to constrain geographic weights when building or validating regional synthetic populations.</p></details></td>
+    </tr>
+    <tr>
+      <td>Labour Force Survey</td>
+      <td>ONS</td>
+      <td>UK</td>
+      <td>1992=present</td>
+      <td>Quarterly</td>
+      <td><details><summary>🔍 <b>Standard government regions (e.g. North West,...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Standard government regions (e.g. North West, South West)</p></details></td>
+      <td>Individual and Household</td>
+      <td>People living in households in the UK</td>
+      <td><details><summary>🔍 <b>Employment status, unemployment, economic ina...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Employment status, unemployment, economic inactivity, occuptaion, industry sector, hours worked, job training, qualifications, and core demographic details</p></details></td>
+      <td><details><summary>🔍 <b>End User Licence for standard anonymised rese...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>End User Licence for standard anonymised research files</p></details></td>
+      <td>Donor microdata</td>
+      <td><details><summary>🔍 <b>Large sample size; gives a highly detailed, m...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Large sample size; gives a highly detailed, multi-dimensional look at an individual's working life</p></details></td>
+      <td>Sample survey</td>
+      <td><details><summary>🔍 <b>Serving as the primary microdata source to si...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Serving as the primary microdata source to simulate employment-related exposures, income distributions, and economic activity within a simulated regional workforce</p></details></td>
+    </tr>
+    <tr>
+      <td>Health Survey for England (HSE)</td>
+      <td>NatCen Social Research and UCL</td>
+      <td>England</td>
+      <td>1991–present</td>
+      <td>Annual</td>
+      <td>Government Office Regions</td>
+      <td>Individual (nested within households)</td>
+      <td><details><summary>🔍 <b>People living in private households in Englan...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>People living in private households in England</p></details></td>
+      <td><details><summary>🔍 <b>Physical measurements, biosamples, general he...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Physical measurements, biosamples, general health status, LTCs, and lifestyle habits</p></details></td>
+      <td>End User Licence</td>
+      <td>Donor microdata/health outcomes/validation</td>
+      <td><details><summary>🔍 <b>HSE includes objective nurse visits with actu...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>HSE includes objective nurse visits with actual physical and biological data collection</p></details></td>
+      <td>Sample survey</td>
+      <td><details><summary>🔍 <b>Used to populate or validate baseline joint d...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Used to populate or validate baseline joint distributions of chronic diseases, smoking prevalance, and alcohol intake behaviours across a simulated digital population.</p></details></td>
+    </tr>
+    <tr>
+      <td>National Trust Survey</td>
+      <td>Department for Transport</td>
+      <td>Great Britain</td>
+      <td>1972–present</td>
+      <td>Annual</td>
+      <td><details><summary>🔍 <b>Broad government regions, urban/rural indicat...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Broad government regions, urban/rural indicators</p></details></td>
+      <td><details><summary>🔍 <b>Individual, Household, Vehicle, and individua...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Individual, Household, Vehicle, and individual 'Trips' (derived from a 7 day travel diary)</p></details></td>
+      <td>Private households in Great Britain</td>
+      <td><details><summary>🔍 <b>Travel frequency, purpose of journeys, mode o...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Travel frequency, purpose of journeys, mode of transport used, distance travelled, time spent travelling, vehicle ownership, and basic socio-demographics</p></details></td>
+      <td>End User Licence</td>
+      <td><details><summary>🔍 <b>Donor Microdata, allowing researchers to assi...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Donor Microdata, allowing researchers to assign realistic, daily behavioural routines to simulated individuals</p></details></td>
+      <td><details><summary>🔍 <b>Includes a detailed 7-day travel diary compon...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Includes a detailed 7-day travel diary component, making it reliable for capturing actual travel behaviour patterns</p></details></td>
+      <td><details><summary>🔍 <b>Excludes commercial travel and only covers pr...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Excludes commercial travel and only covers private households</p></details></td>
+      <td><details><summary>🔍 <b>Evaluate exposure to environmental traffic po...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Evaluate exposure to environmental traffic pollution or to model changes in active travel habits across demographic groups</p></details></td>
+    </tr>
+    <tr>
+      <td>UK-AIR</td>
+      <td>DEFRA</td>
+      <td>UK</td>
+      <td><details><summary>🔍 <b>Variable. Near real-time hourly data up to co...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Variable. Near real-time hourly data up to continuous historical records dating back to the 1970s for some pollutant types</p></details></td>
+      <td><details><summary>🔍 <b>Hourly/real-time for AURN, Annual for PCM mod...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Hourly/real-time for AURN, Annual for PCM models and the NAEI</p></details></td>
+      <td><details><summary>🔍 <b>Highly granular spatial resolution, includes ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Highly granular spatial resolution, includes exact coordinate points for over 1,500 local monitoring stations, as well as 1km^2 grid squares for modelled background pollution maps across the UK</p></details></td>
+      <td><details><summary>🔍 <b>Concentration levels of specific particles/ga...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Concentration levels of specific particles/gases at a given geographic coordinate or grid point</p></details></td>
+      <td>N/A (covers the physical land mass of the UK)</td>
+      <td><details><summary>🔍 <b>Key outdoor air pollutants; Particulate Matte...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Key outdoor air pollutants; Particulate Matter, Nitrogen Dioxide, Ozone, Sulphur Dioxide, Carbon Monoxide</p></details></td>
+      <td>Open</td>
+      <td>Exposure/Contextual Enrichment</td>
+      <td><details><summary>🔍 <b>Accurate local ambient data, high-frequency r...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Accurate local ambient data, high-frequency raw measurements</p></details></td>
+      <td><details><summary>🔍 <b>Captures macro-outdoor environment levels onl...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Captures macro-outdoor environment levels only; it cannot tell you indoor air exposure, nor can it account for individual behavior differences (e.g. whether someone uses an air purifier)</p></details></td>
+      <td><details><summary>🔍 <b>Spatially joining localised annual pollutant ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Spatially joining localised annual pollutant concentrations to simulated home addresses in a synthetic population to model long-term respiratory and CV disease development</p></details></td>
+    </tr>
+    <tr>
+      <td>IMD</td>
+      <td><details><summary>🔍 <b>Ministry of Housing, Communities and Local Go...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Ministry of Housing, Communities and Local Government</p></details></td>
+      <td>England</td>
+      <td>2000, 2004, 2007, 2010, 2015, 2019, 2025</td>
+      <td>Every 4 to 5 years (irregular)</td>
+      <td>LSOA</td>
+      <td>Area-level aggregate</td>
+      <td>The entire population of England</td>
+      <td><details><summary>🔍 <b>Income, Employment, Education/Skills, Health/...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Income, Employment, Education/Skills, Health/Disability, Crime, Barriers to Housing & Services, and the Living Environment</p></details></td>
+      <td>Open</td>
+      <td><details><summary>🔍 <b>Exposure/Contextual Enrichment; look up a sim...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Exposure/Contextual Enrichment; look up a simulated individual's LSOA's IMD decile to understand the level of socioeconomic deprivation they are exposed to in daily life</p></details></td>
+      <td><details><summary>🔍 <b>Granular local geography, breaks down overall...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Granular local geography, breaks down overall deprivation into specific themes</p></details></td>
+      <td><details><summary>🔍 <b>It is a relative ranking measure, not an abso...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>It is a relative ranking measure, not an absolute one (e.g. LSOA ranked 100 is not twice as poor as one ranked 200). It is area level, meaning it can suffer from ecological fallacy (not everyone in a deprived neighbourhood is personally deprived)</p></details></td>
+      <td><details><summary>🔍 <b>Track, simulate and validate health inequalit...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Track, simulate and validate health inequalities by grouping a synthetic population into national deprivation deciles</p></details></td>
+    </tr>
+    <tr>
+      <td>Met Office Climate Data Portal</td>
+      <td>Met Office</td>
+      <td>UK</td>
+      <td><details><summary>🔍 <b>Historical records for the 19th/20th century ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Historical records for the 19th/20th century to present</p></details></td>
+      <td>Historical observations are updated annually</td>
+      <td>Grid boxes from 1km^2 up to 60km^2</td>
+      <td><details><summary>🔍 <b>Gridded spatial cells or specific meteorologi...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Gridded spatial cells or specific meteorological station coordinates</p></details></td>
+      <td>N/A (Geographic/climate landmass monitoring)</td>
+      <td><details><summary>🔍 <b>Daily/monthly temperature, precipitation/rain...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Daily/monthly temperature, precipitation/rainfall frequency, wind speed, solar radiation, humidity, and projected extreme weather events</p></details></td>
+      <td>Open</td>
+      <td><details><summary>🔍 <b>Exposure/Contextual Enrichment; e.g. you can ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Exposure/Contextual Enrichment; e.g. you can simulate how individuals react to a localised 10-day heatwave</p></details></td>
+      <td><details><summary>🔍 <b>Fine spatial resolution, allowing for realist...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Fine spatial resolution, allowing for realistic localised modelling</p></details></td>
+      <td><details><summary>🔍 <b>Climate projections are probabilistic scenari...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Climate projections are probabilistic scenarios, not guaranteed weather forecasts</p></details></td>
+      <td><details><summary>🔍 <b>Layering onto a synthetic population to estim...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Layering onto a synthetic population to estimate future spikes in heat-related CV hospitalisations or checking how climate change disproportionately impacts vulnerable, poorly insulated households</p></details></td>
+    </tr>
+    <tr>
+      <td>Defra Data Services Platform</td>
+      <td><details><summary>🔍 <b>Department for Environment, Food & Rural Affa...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Department for Environment, Food & Rural Affairs & Environment Agency</p></details></td>
+      <td><details><summary>🔍 <b>England (with links provided to parallel serv...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>England (with links provided to parallel services in Scotland, Wales, and Northern Ireland)</p></details></td>
+      <td><details><summary>🔍 <b>Variable. Generally covers active asset regis...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Variable. Generally covers active asset registers, real-time gauges, and historical modelling series spanning the last few decades</p></details></td>
+      <td><details><summary>🔍 <b>Variable, depending on the dataset. Ranges fr...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Variable, depending on the dataset. Ranges from real-time/live feeds to annual administrative releases</p></details></td>
+      <td>Highly granular spatial data.</td>
+      <td><details><summary>🔍 <b>Spatial features (points, lines, polygons) or...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Spatial features (points, lines, polygons) or individual localised monitoring metrics (e.g., water quality test sample, local permit ratings)</p></details></td>
+      <td><details><summary>🔍 <b>N/A (Physical environmental, land, and asset ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>N/A (Physical environmental, land, and asset tracking)</p></details></td>
+      <td><details><summary>🔍 <b>Flood risk areas, river and sea levels, water...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Flood risk areas, river and sea levels, water quality monitoring indices, biodiversity and ecosystem tracking, waste management permits, and industrial pollution inventories</p></details></td>
+      <td>Open/Publicly accessible</td>
+      <td><details><summary>🔍 <b>Exposure/Contextual Enrichment. For example, ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Exposure/Contextual Enrichment. For example, once your synthetic population has residential addresses, you can overlay the Environmental Agency's flood risk maps to determine which simulated households face high environmental or climate vulnerabilities</p></details></td>
+      <td><details><summary>🔍 <b>Provides official regulatory data on corporat...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Provides official regulatory data on corporate pollution and catchment health</p></details></td>
+      <td><details><summary>🔍 <b>Requires significant GIS/spatial data process...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Requires significant GIS/spatial data processing skills to clean and filter for health modelling</p></details></td>
+      <td><details><summary>🔍 <b>Spatially joining localised flood risk zones ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Spatially joining localised flood risk zones or water catchment pollution profiles to synthetic household locations to evaluate the intersection of environmental hazards with socioeconomic deprivation</p></details></td>
+    </tr>
+    <tr>
+      <td>Ordinance Survey Data Products</td>
+      <td>Ordinance Survey</td>
+      <td>Great Britain (England, Scotland, Wales)</td>
+      <td>Continuous active mapping</td>
+      <td><details><summary>🔍 <b>Variable, depending on the product. Bi-annual...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Variable, depending on the product. Bi-annually/annually for some products, Monthly/Quarterly for others</p></details></td>
+      <td><details><summary>🔍 <b>Scales from high-level national boundaries do...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Scales from high-level national boundaries down to exact postcode coordinates and individual building structures</p></details></td>
+      <td><details><summary>🔍 <b>Spatial features (vector points, polygons, li...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Spatial features (vector points, polygons, lines) representing buildings, property polygons, road links, or green spaces</p></details></td>
+      <td><details><summary>🔍 <b>N/A (Geographic landmass and infrastructure t...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>N/A (Geographic landmass and infrastructure tracking)</p></details></td>
+      <td><details><summary>🔍 <b>Building footprints, road and transport netwo...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Building footprints, road and transport networks, administrative boundaries, public parks, sports facilities, play areas, topography/elevation, and address/postcode mapping data</p></details></td>
+      <td><details><summary>🔍 <b>Mixed. A massive portfolio is completely Open...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Mixed. A massive portfolio is completely Open Access, while highly granular datasets require a paid license or academic institutional access</p></details></td>
+      <td><details><summary>🔍 <b>Exposure/Contextual Enrichment/Policy Applica...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Exposure/Contextual Enrichment/Policy Application. It builds the physical map your simulated people live on</p></details></td>
+      <td><details><summary>🔍 <b>Provides exact Unique Property Reference Numb...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Provides exact Unique Property Reference Numbers that allow seamless linking of health records to precise physical properties</p></details></td>
+      <td><details><summary>🔍 <b>Purely structural and geographic data; it con...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Purely structural and geographic data; it contains zero demographic, behavioural, or health information, meaning it must be joined to Census or health survey data to be useful</p></details></td>
+      <td><details><summary>🔍 <b>Calculating physical proximity to active trav...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Calculating physical proximity to active travel infrastructure (cycle paths, paths) and public green spaces to enrich synthetic populations under the 'Healthy Places' and urban policy themes</p></details></td>
+    </tr>
+    <tr>
+      <td>Hospital Episode Statistics (HES)</td>
+      <td>NHS England</td>
+      <td>England</td>
+      <td><details><summary>🔍 <b>1989-present for Admitted Patient Care (APC);...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>1989-present for Admitted Patient Care (APC); 2003-present for Outpatients</p></details></td>
+      <td><details><summary>🔍 <b>Monthly provisional updates; finalised annual...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Monthly provisional updates; finalised annual data refreshes</p></details></td>
+      <td><details><summary>🔍 <b>Patient residence mapped down to LSOA boundar...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Patient residence mapped down to LSOA boundaries, Integrated Care Boards, and specific treating NHS Trust sites</p></details></td>
+      <td><details><summary>🔍 <b>Episode/Admission (Specifically, a Finished C...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Episode/Admission (Specifically, a Finished Consultant Episode - FCE). A single patient can have multiple episodes or admissions over time</p></details></td>
+      <td><details><summary>🔍 <b>All patients treated in NHS hospitals in Engl...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>All patients treated in NHS hospitals in England</p></details></td>
+      <td><details><summary>🔍 <b>Clinical diagnoses, surgical procedures/opera...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Clinical diagnoses, surgical procedures/operations, type of admission, discharge destination, total bed days, and demographic data</p></details></td>
+      <td><details><summary>🔍 <b>Restricted/Secure Lab: High-level aggregated ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Restricted/Secure Lab: High-level aggregated summary tables are open, but individual record-level data requires a formal application</p></details></td>
+      <td>Health Outcomes/Validation</td>
+      <td><details><summary>🔍 <b>Comprehensive coverage, large sample size all...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Comprehensive coverage, large sample size allows for precise modelling of rare clinical conditions and long-term cohort linkage</p></details></td>
+      <td><details><summary>🔍 <b>Lacks detailed primary care information, life...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Lacks detailed primary care information, lifestyle parameters, or metrics on individuals who are sick but do not go to hospital</p></details></td>
+      <td><details><summary>🔍 <b>Serving as the direct health outcome metric t...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Serving as the direct health outcome metric to model and evaluate the simulated impact of environmental air pollution spikes or regional alcohol control policies on emergency hospital admission trends</p></details></td>
+    </tr>
+    <tr>
+      <td>Quality and Outcomes Framework</td>
+      <td>NHS England</td>
+      <td><details><summary>🔍 <b>England (with parallel frameworks managed ind...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>England (with parallel frameworks managed independently in Wales, Scotland and Northern Ireland)</p></details></td>
+      <td>2004-present</td>
+      <td>Annual</td>
+      <td><details><summary>🔍 <b>GP Practice level, Integrated Care Boards, re...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>GP Practice level, Integrated Care Boards, regional and national levels</p></details></td>
+      <td><details><summary>🔍 <b>GP Practice aggregate (disease register count...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>GP Practice aggregate (disease register counts, prevalence percentages, and treatment achievement rates)</p></details></td>
+      <td><details><summary>🔍 <b>All patients registered at participating gene...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>All patients registered at participating general practices in England (roughly 97 to 98 pct of the total registered population)</p></details></td>
+      <td><details><summary>🔍 <b>Disease prevalence registers across over 20 c...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Disease prevalence registers across over 20 clinical areas (e.g. asthma, COPD, obesity, hypertension, diabetes, depression); public health indicators tracking local smoking prevalence and blood pressure monitoring metrics</p></details></td>
+      <td>Open</td>
+      <td><details><summary>🔍 <b>Health Outcomes/Validation. If your synthetic...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Health Outcomes/Validation. If your synthetic population estimates that 14 pct of people in a town have asthma due to air pollution, you check your model against the local GP practices' QOF asthma registers to see if your simulation aligns with reality</p></details></td>
+      <td><details><summary>🔍 <b>Massive, near-universal sample size, useful f...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Massive, near-universal sample size, useful for tracking public health behaviours like smoking or obesity at a hyper-local level</p></details></td>
+      <td><details><summary>🔍 <b>You cannot see individual patient journeys or...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>You cannot see individual patient journeys or overlapping conditions.</p></details></td>
+      <td><details><summary>🔍 <b>Serving as a local benchmarking target to val...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Serving as a local benchmarking target to validate simulated geographic distributions of chronic respiratory conditions, CV diseases, and local smoking rates within a synthetic workforce model</p></details></td>
+    </tr>
+    <tr>
+      <td>ONS Mortality Statistics</td>
+      <td>ONS</td>
+      <td>England and Wales</td>
+      <td><details><summary>🔍 <b>Continuous historical series dating back to 1...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Continuous historical series dating back to 1838</p></details></td>
+      <td>Weekly and annually</td>
+      <td><details><summary>🔍 <b>Scalable from national down to Region, Local ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Scalable from national down to Region, Local Authority, and individual LSOA boundaries</p></details></td>
+      <td>Individual death registration record</td>
+      <td>The entire population of England and Wales</td>
+      <td><details><summary>🔍 <b>Date of death, underlying cause of death, con...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Date of death, underlying cause of death, contributory causes of death, age, sex, place of death, and geographic area of residence</p></details></td>
+      <td>Mixed</td>
+      <td>Health Outcomes/Validation</td>
+      <td><details><summary>🔍 <b>Near 100 pct complete coverage due to strict ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Near 100 pct complete coverage due to strict legal requirement to register deaths in the UK</p></details></td>
+      <td><details><summary>🔍 <b>It only records the final event; it lacks dat...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>It only records the final event; it lacks data on long-term disease progression, behavioural habits, or socioeconomic variables outside of geographic area metrics</p></details></td>
+      <td><details><summary>🔍 <b>Used to populate baseline mortality risks or ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Used to populate baseline mortality risks or to validate synthetic population health outcomes by verifying that simulated death rates frfom specific diseases match local ONS geographic trends</p></details></td>
+    </tr>
+    <tr>
+      <td>GPES/EPD</td>
+      <td>NHS England & NHS Business Services Authority</td>
+      <td>England</td>
+      <td>Mid 2010s-preseny</td>
+      <td><details><summary>🔍 <b>Monthly (for EPD dispensing data) to periodic...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Monthly (for EPD dispensing data) to periodic/fortnightly (for specific GPES research extractions)</p></details></td>
+      <td><details><summary>🔍 <b>Mapped from National summary datasets down to...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Mapped from National summary datasets down to Sub-ICB/Primary Care Network and specific GP Practice locations</p></details></td>
+      <td><details><summary>🔍 <b>Individual prescription item dispense or indi...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Individual prescription item dispense or individual coded diagnostic/clinical marker extracted from GP electronic records</p></details></td>
+      <td><details><summary>🔍 <b>All patients issues a prescription in primary...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>All patients issues a prescription in primary care or included in specific national primary care audit extractions in England</p></details></td>
+      <td><details><summary>🔍 <b>Exact chemical/generic drug names, therapeuti...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Exact chemical/generic drug names, therapeutic classifications, dosage quantities, costs, and the anonymised age/sex metadata profiles of patients receiving the medications</p></details></td>
+      <td>Mixed</td>
+      <td><details><summary>🔍 <b>Health Outcomes/Validation. For example, if a...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Health Outcomes/Validation. For example, if a simulation estimates a drop in local smoking rates or an uptick in respiratory illness due to local air pollution changes, researchers check the local prescribing trends for nicotine replacement therapies or inhalers to validate those behavioural shifts</p></details></td>
+      <td><details><summary>🔍 <b>Captures the massive volume of healthcare man...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Captures the massive volume of healthcare management that never reaches a hospital room</p></details></td>
+      <td><details><summary>🔍 <b>Prescribing datasets show what was dispensed ...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Prescribing datasets show what was dispensed at a pharmacy, but cannot guarantee the patient actually took the medication. Standard open files lack cross-linked clinical diagnostic histories (e.g. you can see an inhaler was prescribed, but not whether it was explicitly used for asthma or COPD)</p></details></td>
+      <td><details><summary>🔍 <b>To simulate and evaluate primary care medicat...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>To simulate and evaluate primary care medication costs, or validating localised chronic illness rates within a synthetic population by cross-referencing targeted cardiovascular or respiratory prescription volumes</p></details></td>
+    </tr>
+    <tr>
+      <td>English Prescribing Data (EPD)</td>
+      <td>NHS Business Services Authority (NHSBSA)</td>
+      <td>England</td>
+      <td>2014-present</td>
+      <td>Monthly</td>
+      <td>GP Practice level</td>
+      <td><details><summary>🔍 <b>Individual prescription item presentation per...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Individual prescription item presentation per practice ()</p></details></td>
+      <td><details><summary>🔍 <b>All patients issued a prescription in primary...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>All patients issued a prescription in primary care in England that was successfully submitted for reimbursement</p></details></td>
+      <td><details><summary>🔍 <b>British National Formulary codes, chemical su...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>British National Formulary codes, chemical substance description, number of items prescribed, total quality dispensed, and Net Ingredient Cost</p></details></td>
+      <td>Open</td>
+      <td><details><summary>🔍 <b>Health Outcomes/Validation. If your synthetic...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Health Outcomes/Validation. If your synthetic population predicts a spike in respiratory or alcohol-related issues in a specific region, you validate that against the real-world volume of inhalers or liver-related medications prescribed by local practices</p></details></td>
+      <td><details><summary>🔍 <b>Universal coverage of all NHS community presc...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Universal coverage of all NHS community prescriptions</p></details></td>
+      <td><details><summary>🔍 <b>Strictly practice-level aggregated statistics...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Strictly practice-level aggregated statistics, meaning you cannot see individual patient demogaphics (age, gender, ethnicity) or cross-reference comorbid conditions on a single person</p></details></td>
+      <td><details><summary>🔍 <b>Evaluating the hyper-local financial and clin...</b></summary><p style='margin: 6px 0 0 0; font-weight: normal; color: #24292e;'>Evaluating the hyper-local financial and clinical impact of chronic illnesses within a synthetic population model by benchmarking against regional BNF therapeutic group prescribing rates</p></details></td>
+    </tr>
+    <tr>
+      <td>Adult Psychiatric Morbidity Survey (APMS)</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Clinical Practice Research Datalink</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Health Survey for England (HSE)</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>National Survey for Wales</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Scottish Health Survey</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Living Costs and Food Survey</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>National Diet and Nutrition Survey</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+</body>
+</html>
