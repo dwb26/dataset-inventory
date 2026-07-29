@@ -1,435 +1,530 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-<style>
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        padding: 20px;
-        background-color: #f9f9f9;
-    }
-    .styled-table {
-        border-collapse: collapse;
-        margin: 25px 0;
-        font-size: 0.85em;
-        width: 100%;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        border-radius: 5px 5px 0 0;
-        overflow: hidden;
-    }
-    .styled-table thead tr {
-        background-color: #1f4e78; /* Deep Blue Header */
-        color: #ffffff;
-        text-align: left;
-        font-weight: bold;
-    }
-    .styled-table th,
-    .styled-table td {
-        padding: 10px 14px;
-        border-bottom: 1px solid #dddddd;
-        vertical-align: top;
-    }
-    /* Alternating shaded rows (zebra striping) */
-    .styled-table tbody tr:nth-of-type(even) {
-        background-color: #f3f7fa; /* Light blue tint */
-    }
-    .styled-table tbody tr:nth-of-type(odd) {
-        background-color: #ffffff;
-    }
-    .styled-table tbody tr:last-of-type {
-        border-bottom: 2px solid #1f4e78;
-    }
-    /* Hover highlight */
-    .styled-table tbody tr:hover {
-        background-color: #e6f2ff;
-        transition: background-color 0.15s ease-in-out;
-    }
-    /* Styling links to match theme */
-    .styled-table a {
-        color: #0056b3;
-        font-weight: 600;
-        text-decoration: none;
-    }
-    .styled-table a:hover {
-        text-decoration: underline;
-    }
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mapping Framework Inventory for Synthetic Data in UKRI PHI </title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .header-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a0dab;
+            margin-bottom: 4px;
+        }
+        .header-sub {
+            font-size: 0.82rem;
+            color: #70757a;
+            margin-bottom: 16px;
+        }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            border-radius: 4px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 0.78rem;
+            line-height: 1.35;
+        }
+        th {
+            background-color: #1a73e8; /* Exact bright blue theme */
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 8px 10px;
+            white-space: nowrap;
+            border-right: 1px solid rgba(255,255,255,0.2);
+        }
+        td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            border-right: 1px solid #f0f0f0;
+            vertical-align: top;
+            max-width: 200px;
+        }
+        /* Alternating zebra row shading */
+        tr:nth-child(even) {
+            background-color: #f4f8fd; /* Soft blue tint */
+        }
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        tr:hover {
+            background-color: #e8f0fe;
+        }
+        a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Expandable text toggle styling matching screenshot 🔍 */
+        .cell-truncated {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .toggle-btn {
+            color: #1a73e8;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 4px;
+            user-select: none;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
-<table border="1" class="dataframe styled-table">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Dataset</th>
-      <th>Organisation</th>
-      <th>Country</th>
-      <th>Years available</th>
-      <th>Update frequency</th>
-      <th>Geographical level</th>
-      <th>Unit of observation</th>
-      <th>Population covered</th>
-      <th>Main domains/variables</th>
-      <th>Access</th>
-      <th>Typical role</th>
-      <th>Strengths</th>
-      <th>Limitations</th>
-      <th>Example applications</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://www.ons.gov.uk/census" target="_blank" rel="noopener noreferrer">2021 Census</a></td>
-      <td>ONS</td>
-      <td>England/Wales</td>
-      <td>2021 (2011 for comparison)</td>
-      <td>10-yearly</td>
-      <td>OA, LSOA, MSOA, LA</td>
-      <td>Individual/Household (aggregated)</td>
-      <td>Whole population</td>
-      <td>Age, sex, ethnicity, education, tenure, household type, employment</td>
-      <td>Open</td>
-      <td>Population frame / Constraints</td>
-      <td>Complete coverage</td>
-      <td>Infrequent updates</td>
-      <td>Base population synthesis</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.understandingsociety.ac.uk/" target="_blank" rel="noopener noreferrer">Understanding Society</a></td>
-      <td>ISER</td>
-      <td>UK</td>
-      <td>2009–present</td>
-      <td>Annual</td>
-      <td>Individual (geo under licence)</td>
-      <td>Individual</td>
-      <td>Household survey</td>
-      <td>Health, income, education, employment, wellbeing</td>
-      <td>Secure licence</td>
-      <td>Donor microdata</td>
-      <td>Rich longitudinal data</td>
-      <td>Sample survey</td>
-      <td>Synthetic population enrichment</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.nomisweb.co.uk/" target="_blank" rel="noopener noreferrer">Nomis (Official Labour Market Statistics/ONS Data Portal)</a></td>
-      <td>ONS</td>
-      <td>UK</td>
-      <td>Variable. Covers historic censuses (going back decades) up to contemporary, near real-time monthly data.</td>
-      <td>Variable depending on the underlying set. Ranges from Monthly (e.g. Claimant Counts) to Quarterly/Annual (e.g. Annual Population Survey) to 10-yearly (Census data)</td>
-      <td>Scalable from Country/Regional down to Local Authority, Ward, and Output Area (OA/LSOA/MSOA) levels.</td>
-      <td>Primarily Aggregated data (counts, rates and percentages for specific geographic boundaries), though derived from individual microdata responses</td>
-      <td>Whole UK population/UK resident workforce.</td>
-      <td>Employment rates, unemployment dynamics, earnings, qualifications, industry/occupational sectors, benefit claimants, and local household characteristics.</td>
-      <td>Open</td>
-      <td>Donor Microdata proxy/Population Frame Constraints/Policy Application</td>
-      <td>Free, offers granular local-area geographic breakdowns</td>
-      <td>Data is strictly aggregated to preserve privacy. Cannot download the raw microdata without secure lab access.</td>
-      <td>Providing localised socioeconomic benchmarks to constrain geographic weights when building or validating regional synthetic populations.</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.ons.gov.uk/surveys/informationforhouseholdsandindividuals/householdsurveys/labourforcesurveys" target="_blank" rel="noopener noreferrer">Labour Force Survey</a></td>
-      <td>ONS</td>
-      <td>UK</td>
-      <td>1992–present</td>
-      <td>Quarterly</td>
-      <td>Standard government regions (e.g. North West, South West)</td>
-      <td>Individual and Household</td>
-      <td>People living in households in the UK</td>
-      <td>Employment status, unemployment, economic inactivity, occupation, industry sector, hours worked, job training, qualifications, and core demographic details</td>
-      <td>End User Licence for standard anonymised research files</td>
-      <td>Donor microdata</td>
-      <td>Large sample size; gives a highly detailed, multi-dimensional look at an individual's working life</td>
-      <td>Sample survey</td>
-      <td>Serving as the primary microdata source to simulate employment-related exposures, income distributions, and economic activity within a simulated regional workforce</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.gov.uk/government/collections/national-travel-survey-statistics" target="_blank" rel="noopener noreferrer">National Travel Survey</a></td>
-      <td>Department for Transport</td>
-      <td>Great Britain</td>
-      <td>1972–present</td>
-      <td>Annual</td>
-      <td>Broad government regions, urban/rural indicators</td>
-      <td>Individual, Household, Vehicle, and individual 'Trips' (derived from a 7 day travel diary)</td>
-      <td>Private households in Great Britain</td>
-      <td>Travel frequency, purpose of journeys, mode of transport used, distance travelled, time spent travelling, vehicle ownership, and basic socio-demographics</td>
-      <td>End User Licence</td>
-      <td>Donor Microdata, allowing researchers to assign realistic, daily behavioural routines to simulated individuals</td>
-      <td>Includes a detailed 7-day travel diary component, making it reliable for capturing actual travel behaviour patterns</td>
-      <td>Excludes commercial travel and only covers private households</td>
-      <td>Evaluate exposure to environmental traffic pollution or to model changes in active travel habits across demographic groups</td>
-    </tr>
-    <tr>
-      <td><a href="https://uk-air.defra.gov.uk/" target="_blank" rel="noopener noreferrer">UK-AIR</a></td>
-      <td>DEFRA</td>
-      <td>UK</td>
-      <td>Variable. Near real-time hourly data up to continuous historical records dating back to the 1970s for some pollutant types</td>
-      <td>Hourly/real-time for AURN, Annual for PCM models and the NAEI</td>
-      <td>Highly granular spatial resolution, includes exact coordinate points for over 1,500 local monitoring stations, as well as 1km^2 grid squares for modelled background pollution maps across the UK</td>
-      <td>Concentration levels of specific particles/gases at a given geographic coordinate or grid point</td>
-      <td>N/A (covers the physical land mass of the UK)</td>
-      <td>Key outdoor air pollutants; Particulate Matter, Nitrogen Dioxide, Ozone, Sulphur Dioxide, Carbon Monoxide</td>
-      <td>Open</td>
-      <td>Exposure/Contextual Enrichment</td>
-      <td>Accurate local ambient data, high-frequency raw measurements</td>
-      <td>Captures macro-outdoor environment levels only; it cannot tell you indoor air exposure, nor can it account for individual behavior differences (e.g. whether someone uses an air purifier)</td>
-      <td>Spatially joining localised annual pollutant concentrations to simulated home addresses in a synthetic population to model long-term respiratory and CV disease development</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.gov.uk/government/collections/english-indices-of-deprivation" target="_blank" rel="noopener noreferrer">IMD</a></td>
-      <td>Ministry of Housing, Communities and Local Government</td>
-      <td>England</td>
-      <td>2000, 2004, 2007, 2010, 2015, 2019, 2025</td>
-      <td>Every 4 to 5 years (irregular)</td>
-      <td>LSOA</td>
-      <td>Area-level aggregate</td>
-      <td>The entire population of England</td>
-      <td>Income, Employment, Education/Skills, Health/Disability, Crime, Barriers to Housing & Services, and the Living Environment</td>
-      <td>Open</td>
-      <td>Exposure/Contextual Enrichment; look up a simulated individual's LSOA's IMD decile to understand the level of socioeconomic deprivation they are exposed to in daily life</td>
-      <td>Granular local geography, breaks down overall deprivation into specific themes</td>
-      <td>It is a relative ranking measure, not an absolute one (e.g. LSOA ranked 100 is not twice as poor as one ranked 200). It is area level, meaning it can suffer from ecological fallacy (not everyone in a deprived neighbourhood is personally deprived)</td>
-      <td>Track, simulate and validate health inequalities by grouping a synthetic population into national deprivation deciles</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.metoffice.gov.uk/services/data/dataportal" target="_blank" rel="noopener noreferrer">Met Office Climate Data Portal</a></td>
-      <td>Met Office</td>
-      <td>UK</td>
-      <td>Historical records for the 19th/20th century to present</td>
-      <td>Historical observations are updated annually</td>
-      <td>Grid boxes from 1km^2 up to 60km^2</td>
-      <td>Gridded spatial cells or specific meteorological station coordinates</td>
-      <td>N/A (Geographic/climate landmass monitoring)</td>
-      <td>Daily/monthly temperature, precipitation/rainfall frequency, wind speed, solar radiation, humidity, and projected extreme weather events</td>
-      <td>Open</td>
-      <td>Exposure/Contextual Enrichment; e.g. you can simulate how individuals react to a localised 10-day heatwave</td>
-      <td>Fine spatial resolution, allowing for realistic localised modelling</td>
-      <td>Climate projections are probabilistic scenarios, not guaranteed weather forecasts</td>
-      <td>Layering onto a synthetic population to estimate future spikes in heat-related CV hospitalisations or checking how climate change disproportionately impacts vulnerable, poorly insulated households</td>
-    </tr>
-    <tr>
-      <td><a href="https://environment.data.gov.uk/" target="_blank" rel="noopener noreferrer">Defra Data Services Platform</a></td>
-      <td>Department for Environment, Food & Rural Affairs & Environment Agency</td>
-      <td>England (with links provided to parallel services in Scotland, Wales, and Northern Ireland)</td>
-      <td>Variable. Generally covers active asset registers, real-time gauges, and historical modelling series spanning the last few decades</td>
-      <td>Variable, depending on the dataset. Ranges from real-time/live feeds to annual administrative releases</td>
-      <td>Highly granular spatial data.</td>
-      <td>Spatial features (points, lines, polygons) or individual localised monitoring metrics (e.g., water quality test sample, local permit ratings)</td>
-      <td>N/A (Physical environmental, land, and asset tracking)</td>
-      <td>Flood risk areas, river and sea levels, water quality monitoring indices, biodiversity and ecosystem tracking, waste management permits, and industrial pollution inventories</td>
-      <td>Open/Publicly accessible</td>
-      <td>Exposure/Contextual Enrichment. For example, once your synthetic population has residential addresses, you can overlay the Environmental Agency's flood risk maps to determine which simulated households face high environmental or climate vulnerabilities</td>
-      <td>Provides official regulatory data on corporate pollution and catchment health</td>
-      <td>Requires significant GIS/spatial data processing skills to clean and filter for health modelling</td>
-      <td>Spatially joining localised flood risk zones or water catchment pollution profiles to synthetic household locations to evaluate the intersection of environmental hazards with socioeconomic deprivation</td>
-    </tr>
-    <tr>
-      <td><a href="https://osdatahub.os.uk/" target="_blank" rel="noopener noreferrer">Ordnance Survey Data Products</a></td>
-      <td>Ordnance Survey</td>
-      <td>Great Britain (England, Scotland, Wales)</td>
-      <td>Continuous active mapping</td>
-      <td>Variable, depending on the product. Bi-annually/annually for some products, Monthly/Quarterly for others</td>
-      <td>Scales from high-level national boundaries down to exact postcode coordinates and individual building structures</td>
-      <td>Spatial features (vector points, polygons, lines) representing buildings, property polygons, road links, or green spaces</td>
-      <td>N/A (Geographic landmass and infrastructure tracking)</td>
-      <td>Building footprints, road and transport networks, administrative boundaries, public parks, sports facilities, play areas, topography/elevation, and address/postcode mapping data</td>
-      <td>Mixed. A massive portfolio is completely Open Access, while highly granular datasets require a paid license or academic institutional access</td>
-      <td>Exposure/Contextual Enrichment/Policy Application. It builds the physical map your simulated people live on</td>
-      <td>Provides exact Unique Property Reference Numbers that allow seamless linking of health records to precise physical properties</td>
-      <td>Purely structural and geographic data; it contains zero demographic, behavioural, or health information, meaning it must be joined to Census or health survey data to be useful</td>
-      <td>Calculating physical proximity to active travel infrastructure (cycle paths, paths) and public green spaces to enrich synthetic populations under the 'Healthy Places' and urban policy themes</td>
-    </tr>
-    <tr>
-      <td><a href="https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics" target="_blank" rel="noopener noreferrer">Hospital Episode Statistics (HES)</a></td>
-      <td>NHS England</td>
-      <td>England</td>
-      <td>1989-present for Admitted Patient Care (APC); 2003-present for Outpatients</td>
-      <td>Monthly provisional updates; finalised annual data refreshes</td>
-      <td>Patient residence mapped down to LSOA boundaries, Integrated Care Boards, and specific treating NHS Trust sites</td>
-      <td>Episode/Admission (Specifically, a Finished Consultant Episode - FCE). A single patient can have multiple episodes or admissions over time</td>
-      <td>All patients treated in NHS hospitals in England</td>
-      <td>Clinical diagnoses, surgical procedures/operations, type of admission, discharge destination, total bed days, and demographic data</td>
-      <td>Restricted/Secure Lab: High-level aggregated summary tables are open, but individual record-level data requires a formal application</td>
-      <td>Health Outcomes/Validation</td>
-      <td>Comprehensive coverage, large sample size allows for precise modelling of rare clinical conditions and long-term cohort linkage</td>
-      <td>Lacks detailed primary care information, lifestyle parameters, or metrics on individuals who are sick but do not go to hospital</td>
-      <td>Serving as the direct health outcome metric to model and evaluate the simulated impact of environmental air pollution spikes or regional alcohol control policies on emergency hospital admission trends</td>
-    </tr>
-    <tr>
-      <td><a href="https://digital.nhs.uk/data-and-information/publications/statistical/quality-and-outcomes-framework-achievement-prevalence-and-exceptions-data" target="_blank" rel="noopener noreferrer">Quality and Outcomes Framework</a></td>
-      <td>NHS England</td>
-      <td>England (with parallel frameworks managed independently in Wales, Scotland and Northern Ireland)</td>
-      <td>2004-present</td>
-      <td>Annual</td>
-      <td>GP Practice level, Integrated Care Boards, regional and national levels</td>
-      <td>GP Practice aggregate (disease register counts, prevalence percentages, and treatment achievement rates)</td>
-      <td>All patients registered at participating general practices in England (roughly 97 to 98 pct of the total registered population)</td>
-      <td>Disease prevalence registers across over 20 clinical areas (e.g. asthma, COPD, obesity, hypertension, diabetes, depression); public health indicators tracking local smoking prevalence and blood pressure monitoring metrics</td>
-      <td>Open</td>
-      <td>Health Outcomes/Validation. If your synthetic population estimates that 14 pct of people in a town have asthma due to air pollution, you check your model against the local GP practices' QOF asthma registers to see if your simulation aligns with reality</td>
-      <td>Massive, near-universal sample size, useful for tracking public health behaviours like smoking or obesity at a hyper-local level</td>
-      <td>You cannot see individual patient journeys or overlapping conditions.</td>
-      <td>Serving as a local benchmarking target to validate simulated geographic distributions of chronic respiratory conditions, CV diseases, and local smoking rates within a synthetic workforce model</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths" target="_blank" rel="noopener noreferrer">ONS Mortality Statistics</a></td>
-      <td>ONS</td>
-      <td>England and Wales</td>
-      <td>Continuous historical series dating back to 1838</td>
-      <td>Weekly and annually</td>
-      <td>Scalable from national down to Region, Local Authority, and individual LSOA boundaries</td>
-      <td>Individual death registration record</td>
-      <td>The entire population of England and Wales</td>
-      <td>Date of death, underlying cause of death, contributory causes of death, age, sex, place of death, and geographic area of residence</td>
-      <td>Mixed</td>
-      <td>Health Outcomes/Validation</td>
-      <td>Near 100 pct complete coverage due to strict legal requirement to register deaths in the UK</td>
-      <td>It only records the final event; it lacks data on long-term disease progression, behavioural habits, or socioeconomic variables outside of geographic area metrics</td>
-      <td>Used to populate baseline mortality risks or to validate synthetic population health outcomes by verifying that simulated death rates from specific diseases match local ONS geographic trends</td>
-    </tr>
-    <tr>
-      <td><a href="https://digital.nhs.uk/services/general-practice-extraction-service-gpes" target="_blank" rel="noopener noreferrer">GPES/EPD</a></td>
-      <td>NHS England & NHS Business Services Authority</td>
-      <td>England</td>
-      <td>Mid 2010s-present</td>
-      <td>Monthly (for EPD dispensing data) to periodic/fortnightly (for specific GPES research extractions)</td>
-      <td>Mapped from National summary datasets down to Sub-ICB/Primary Care Network and specific GP Practice locations</td>
-      <td>Individual prescription item dispense or individual coded diagnostic/clinical marker extracted from GP electronic records</td>
-      <td>All patients issued a prescription in primary care or included in specific national primary care audit extractions in England</td>
-      <td>Exact chemical/generic drug names, therapeutic classifications, dosage quantities, costs, and the anonymised age/sex metadata profiles of patients receiving the medications</td>
-      <td>Mixed</td>
-      <td>Health Outcomes/Validation. For example, if a simulation estimates a drop in local smoking rates or an uptick in respiratory illness due to local air pollution changes, researchers check the local prescribing trends for nicotine replacement therapies or inhalers to validate those behavioural shifts</td>
-      <td>Captures the massive volume of healthcare management that never reaches a hospital room</td>
-      <td>Prescribing datasets show what was dispensed at a pharmacy, but cannot guarantee the patient actually took the medication. Standard open files lack cross-linked clinical diagnostic histories (e.g. you can see an inhaler was prescribed, but not whether it was explicitly used for asthma or COPD)</td>
-      <td>To simulate and evaluate primary care medication costs, or validating localised chronic illness rates within a synthetic population by cross-referencing targeted cardiovascular or respiratory prescription volumes</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.nhsbsa.nhs.uk/prescription-data/dispensing-data/english-prescribing-data-epd" target="_blank" rel="noopener noreferrer">English Prescribing Data (EPD)</a></td>
-      <td>NHS Business Services Authority (NHSBSA)</td>
-      <td>England</td>
-      <td>2014-present</td>
-      <td>Monthly</td>
-      <td>GP Practice level</td>
-      <td>Individual prescription item presentation per practice</td>
-      <td>All patients issued a prescription in primary care in England that was successfully submitted for reimbursement</td>
-      <td>British National Formulary codes, chemical substance description, number of items prescribed, total quantity dispensed, and Net Ingredient Cost</td>
-      <td>Open</td>
-      <td>Health Outcomes/Validation. If your synthetic population predicts a spike in respiratory or alcohol-related issues in a specific region, you validate that against the real-world volume of inhalers or liver-related medications prescribed by local practices</td>
-      <td>Universal coverage of all NHS community prescriptions</td>
-      <td>Strictly practice-level aggregated statistics, meaning you cannot see individual patient demographics (age, gender, ethnicity) or cross-reference comorbid conditions on a single person</td>
-      <td>Evaluating the hyper-local financial and clinical impact of chronic illnesses within a synthetic population model by benchmarking against regional BNF therapeutic group prescribing rates</td>
-    </tr>
-    <tr>
-      <td><a href="https://digital.nhs.uk/data-and-information/publications/statistical/adult-psychiatric-morbidity-survey" target="_blank" rel="noopener noreferrer">Adult Psychiatric Morbidity Survey (APMS)</a></td>
-      <td>NHS England & NatCen Social Research</td>
-      <td>England</td>
-      <td>1993, 2000, 2007, 2014, 2023–2024</td>
-      <td>Periodic (~every 7 years)</td>
-      <td>National and Regional (Strategic Health Authority level / Postcode Sector primary sampling units)</td>
-      <td>Individual adult survey respondent</td>
-      <td>Private household residents in England aged 16 and over</td>
-      <td>Screening & diagnostic assessments for common mental disorders (CMD), PTSD, psychosis, ADHD, autism, self-harm, suicidal ideation, alcohol/drug dependencies, service use, and medication</td>
-      <td>Restricted</td>
-      <td>Health Outcomes/Validation</td>
-      <td>Gold-standard national benchmark for psychiatric prevalence in the community, capturing untreated mental illness that never appears in primary or secondary care records</td>
-      <td>Low sample frequency (every 7 years), excludes institutional populations (prisons, care homes, communal establishments), and relies on self-reported symptoms/screening tools</td>
-      <td>Validating baseline mental health distributions, comorbidities, and untreated psychiatric illness prevalence across synthetic sub-demographics</td>
-    </tr>
-    <tr>
-      <td><a href="https://cprd.com/" target="_blank" rel="noopener noreferrer">Clinical Practice Research Datalink (CPRD)</a></td>
-      <td>MHRA & NIHR</td>
-      <td>UK-wide (England, Scotland, Wales, NI)</td>
-      <td>1987–present</td>
-      <td>Continuous (updated monthly/daily)</td>
-      <td>GP Practice level mapped to national/regional boundaries; linkable to LSOA deprivation measures</td>
-      <td>Individual longitudinal patient record</td>
-      <td>Over 60 million total anonymised patients (~20% active UK population coverage across participating GP practices)</td>
-      <td>Clinical diagnoses (Read/Snomed codes), primary care prescriptions, lab tests, immunisations, symptoms, secondary care referrals, and linked HES/cancer registration/mortality data</td>
-      <td>Restricted</td>
-      <td>Health Outcomes/Validation</td>
-      <td>Unrivalled real-world longitudinal coverage with deep medical histories, multi-decade follow-ups, and individual-level linkage across primary, hospital, and death registries</td>
-      <td>Requires rigorous protocol approval (RDG) and license fees; subject to variable clinical coding quality, missing secondary care nuance, and potential GP practice sampling bias</td>
-      <td>Primary ground-truth data for parameterising disease incidence transitions, co-morbidity matrices, and validating synthetic longitudinal patient trajectories</td>
-    </tr>
-    <tr>
-      <td><a href="https://digital.nhs.uk/data-and-information/publications/statistical/health-survey-for-england" target="_blank" rel="noopener noreferrer">Health Survey for England (HSE)</a></td>
-      <td>NHS England & NatCen Social Research</td>
-      <td>England</td>
-      <td>1991–present</td>
-      <td>Annual</td>
-      <td>National, Regional, and Local Authority levels (via Postcode Sector clusters)</td>
-      <td>Individual survey respondent (adults and children)</td>
-      <td>Representative sample of ~8,000 adults and ~2,000 children living in private households annually</td>
-      <td>Objective biological markers (blood pressure, BMI, blood/saliva samples), chronic health conditions, lifestyle choices (smoking, alcohol, diet), and general wellbeing</td>
-      <td>Open</td>
-      <td>Population Baseline / Health Outcomes</td>
-      <td>Combines self-reported lifestyle metrics with physical measurements (height, weight, blood tests), avoiding self-reporting bias for clinical markers like hypertension and obesity</td>
-      <td>Cross-sectional design prevents longitudinal individual tracking; sample sizes are too small for granular hyper-local (LSOA) estimations without spatial micro-simulation</td>
-      <td>Joint probability distributions for agent-based models (e.g., correlating BMI, smoking status, age, and chronic condition prevalence to populate realistic agent profiles)</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.gov.wales/national-survey-wales" target="_blank" rel="noopener noreferrer">National Survey for Wales</a></td>
-      <td>Welsh Government</td>
-      <td>Wales</td>
-      <td>2012–present (successor to Welsh Health Survey)</td>
-      <td>Annual (continuous fieldwork)</td>
-      <td>National, Local Authority, and Local Health Board (LHB) levels</td>
-      <td>Individual survey respondent</td>
-      <td>~12,000 adults aged 16+ living in private households in Wales annually</td>
-      <td>General health, illness/disability, GP/hospital service satisfaction, smoking, drinking, physical activity, diet, active travel, and socioeconomic circumstances</td>
-      <td>Open</td>
-      <td>Population Baseline / Validation</td>
-      <td>Large sample size relative to Welsh population size allows robust breakdown across Welsh Local Authorities and Health Boards</td>
-      <td>Limited to Wales; relies primarily on self-reported health behaviours and status without physical/biological sample validation</td>
-      <td>Validating and parameterising synthetic individual health profiles, lifestyle behaviours, and public service utilization specifically for Welsh geographic cohorts</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.gov.scot/collections/scottish-health-survey/" target="_blank" rel="noopener noreferrer">Scottish Health Survey (SHeS)</a></td>
-      <td>Scottish Government & Public Health Scotland</td>
-      <td>Scotland</td>
-      <td>1995–present</td>
-      <td>Annual</td>
-      <td>National, NHS Board, and Local Authority levels</td>
-      <td>Individual survey respondent (adults and children)</td>
-      <td>~4,000 adults and ~1,000 children living in private households in Scotland annually</td>
-      <td>Cardiovascular disease, respiratory illness, mental wellbeing, diet, physical activity, alcohol, smoking, biological measurements, and dental health</td>
-      <td>Open</td>
-      <td>Population Baseline / Validation</td>
-      <td>Includes biological module (blood/urine samples, blood pressure) alongside detailed lifestyle questions tailored to Scottish health priorities</td>
-      <td>Restricted to Scottish population; cross-sectional snapshots cannot track individual trajectory histories directly over time</td>
-      <td>Benchmarking chronic disease prevalence and health behaviors in Scottish synthetic populations, enabling cross-devolved nation comparisons</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.ons.gov.uk/surveys/informationforhouseholdsandindividuals/householdsurveys/livingcostsandfoodsurveylcfs" target="_blank" rel="noopener noreferrer">Living Costs and Food Survey (LCFS)</a></td>
-      <td>ONS & DEFRA</td>
-      <td>UK-wide</td>
-      <td>1957–present (formerly Family Expenditure Survey)</td>
-      <td>Annual (continuous collection)</td>
-      <td>National and UK Region / Country level</td>
-      <td>Household and individual diary keeper</td>
-      <td>~5,000 private households in the UK per year keeping detailed 2-week spending diaries</td>
-      <td>Detailed household income, expenditure items (food, alcohol, tobacco, utilities, transport), quantities of food purchased, and household demographic composition</td>
-      <td>Open</td>
-      <td>Socioeconomic / Behavioural Baseline</td>
-      <td>Gold standard for granular household financial choices, expenditure patterns, and physical food purchasing quantities linked directly to income brackets</td>
-      <td>High survey burden leads to potential non-response bias; small annual sample size restricts hyper-local spatial disaggregation</td>
-      <td>Modelling economic determinants of health within synthetic populations (e.g., spending capacity on healthy food, tobacco/alcohol expenditure, energy poverty)</td>
-    </tr>
-    <tr>
-      <td><a href="https://www.gov.uk/government/collections/national-diet-and-nutrition-survey" target="_blank" rel="noopener noreferrer">National Diet and Nutrition Survey (NDNS)</a></td>
-      <td>OHID (DHSC) & Food Standards Agency (FSA)</td>
-      <td>UK-wide</td>
-      <td>2008–present (rolling programme)</td>
-      <td>Annual continuous rolling program</td>
-      <td>National UK level (with periodic nation boosts for Scotland, Wales, NI)</td>
-      <td>Individual survey participant (aged 1.5 years and over)</td>
-      <td>~1,000 participants per year (500 adults, 500 children) keeping 4-day dietary diaries</td>
-      <td>Exact nutrient intakes, macronutrient/micronutrient breakdowns, food group consumption, blood/urine nutritional status biomarkers, height, weight, and physical activity</td>
-      <td>Open</td>
-      <td>Socioeconomic / Behavioural Baseline</td>
-      <td>Provides precise quantitative dietary intake data and biological nutritional validation rather than high-level general estimates</td>
-      <td>Small annual sample size (requires combining multi-year waves for statistical power); 4-day diary may suffer from temporary under-reporting</td>
-      <td>Parameterising detailed metabolic or nutritional attributes in synthetic agents to model dietary interventions, sodium/sugar reduction, or malnutrition risk factors</td>
-    </tr>
-  </tbody>
-</table>
+
+<div class="header-title">Data Mapping Framework Inventory for Synthetic Data in UKRI PHI</div>
+<div class="header-sub">Click on any condensed cell (🔍) to expand and view full narrative descriptions inline.</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Dataset</th>
+                <th>Organisation</th>
+                <th>Country</th>
+                <th>Years available</th>
+                <th>Update frequency</th>
+                <th>Geographical level</th>
+                <th>Unit of observation</th>
+                <th>Population covered</th>
+                <th>Main domains/variables</th>
+                <th>Access</th>
+                <th>Typical role</th>
+                <th>Workflow stage</th>
+                <th>PHI theme</th>
+                <th>Strengths</th>
+                <th>Limitations</th>
+                <th>Example applications</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="https://www.ons.gov.uk/census" target="_blank">2021 Census</a></td>
+                <td>ONS</td>
+                <td>England/Wales</td>
+                <td>2021 (2011 for comparison)</td>
+                <td>10-yearly</td>
+                <td>OA, LSOA, MSOA, LA</td>
+                <td>Individual/Household (aggregated)</td>
+                <td>Whole population</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Age, sex, ethnicity, education, tenure, household type, employment</span></td>
+                <td>Open</td>
+                <td>Population frame / Constraints</td>
+                <td>Population frame</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Air pollution/Healthy places/Food/Health inequalities</span></td>
+                <td>Complete coverage</td>
+                <td>Infrequent updates</td>
+                <td>Base population synthesis</td>
+            </tr>
+            <tr>
+                <td><a href="https://academic.oup.com/ije/article/49/2/361/5625684" target="_blank">Adult Psychiatric Morbidity Survey (APMS)</a></td>
+                <td>NHS England &amp; NatCen Social Research</td>
+                <td>England</td>
+                <td>1993, 2000, 2007, 2014, 2023–2024</td>
+                <td>Periodic (~every 7 years)</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">National and Regional (Strategic Health Authority level / Postcode Sector primary sampling units)</span></td>
+                <td>Individual adult survey respondent</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Private household residents in England aged 16 and over</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Screening &amp; diagnostic assessments for common mental disorders (CMD), PTSD, psychosis, ADHD, autism, self-harm, suicidal ideation, alcohol/drug dependencies, service use, and medication</span></td>
+                <td>Restricted</td>
+                <td>Health Outcomes/Validation</td>
+                <td>Health outcomes</td>
+                <td>Public mental health</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Gold-standard national benchmark for psychiatric prevalence in the community, capturing untreated mental illness that never appears in primary or secondary care records</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Low sample frequency (every 7 years), excludes institutional populations (prisons, care homes, communal establishments), and relies on self-reported symptoms/screening tools</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Validating baseline mental health distributions, comorbidities, and untreated psychiatric illness prevalence across synthetic sub-demographics</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.cprd.com/data" target="_blank">Clinical Practice Research Datalink (CPRD)</a></td>
+                <td>MHRA &amp; NIHR</td>
+                <td>UK-wide (England, Scotland, Wales, NI)</td>
+                <td>1987–present</td>
+                <td>Continuous (updated monthly/daily)</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">GP Practice level mapped to national/regional boundaries; linkable to LSOA deprivation measures</span></td>
+                <td>Individual longitudinal patient record</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Over 60 million total anonymised patients (~20% active UK population coverage across participating GP practices)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Clinical diagnoses (Read/Snomed codes), primary care prescriptions, lab tests, immunisations, symptoms, secondary care referrals, and linked HES/cancer registration/mortality data</span></td>
+                <td>Restricted</td>
+                <td>Health Outcomes/Validation</td>
+                <td>Health outcomes</td>
+                <td>Public mental health</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Unrivalled real-world longitudinal coverage with deep medical histories, multi-decade follow-ups, and individual-level linkage across primary, hospital, and death registries</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Requires rigorous protocol approval (RDG) and license fees; subject to variable clinical coding quality, missing secondary care nuance, and potential GP practice sampling bias</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Primary ground-truth data for parameterising disease incidence transitions, co-morbidity matrices, and validating synthetic longitudinal patient trajectories</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://uk-air.defra.gov.uk/data/" target="_blank">Defra Data Services Platform</a></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Department for Environment, Food &amp; Rural Affairs &amp; Environment Agency</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">England (with links provided to parallel services in Scotland, Wales, and Northern Ireland)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Variable. Generally covers active asset registers, real-time gauges, and historical modelling series spanning the last few decades</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Variable, depending on the dataset. Ranges from real-time/live feeds to annual administrative releases</span></td>
+                <td>Highly granular spatial data.</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Spatial features (points, lines, polygons) or individual localised monitoring metrics (e.g., water quality test sample, local permit ratings)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">N/A (Physical environmental, land, and asset tracking)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Flood risk areas, river and sea levels, water quality monitoring indices, biodiversity and ecosystem tracking, waste management permits, and industrial pollution inventories</span></td>
+                <td>Open</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Exposure/Contextual Enrichment. For example, once your synthetic population has residential addresses, you can overlay the Environmental Agency&#x27;s flood risk maps to determine which simulated households face high environmental or climate vulnerabilities</span></td>
+                <td>Contextual enrichment</td>
+                <td>Air pollution</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Provides official regulatory data on corporate pollution and catchment health</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Requires significant GIS/spatial data processing skills to clean and filter for health modelling</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Spatially joining localised flood risk zones or water catchment pollution profiles to synthetic household locations to evaluate the intersection of environmental hazards with socioeconomic deprivation</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.nhsbsa.nhs.uk/prescription-data/prescribing-data/english-prescribing-data-epd" target="_blank">English Prescribing Data (EPD)</a></td>
+                <td>NHS Business Services Authority (NHSBSA)</td>
+                <td>England</td>
+                <td>2014-present</td>
+                <td>Monthly</td>
+                <td>GP Practice level</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Individual prescription item presentation per practice</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">All patients issued a prescription in primary care in England that was successfully submitted for reimbursement</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">British National Formulary codes, chemical substance description, number of items prescribed, total quantity dispensed, and Net Ingredient Cost</span></td>
+                <td>Open</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Health Outcomes/Validation. If your synthetic population predicts a spike in respiratory or alcohol-related issues in a specific region, you validate that against the real-world volume of inhalers or liver-related medications prescribed by local practices</span></td>
+                <td>Health outcomes</td>
+                <td>Public mental health</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Universal coverage of all NHS community prescriptions</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Strictly practice-level aggregated statistics, meaning you cannot see individual patient demographics (age, gender, ethnicity) or cross-reference comorbid conditions on a single person</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Evaluating the hyper-local financial and clinical impact of chronic illnesses within a synthetic population model by benchmarking against regional BNF therapeutic group prescribing rates</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://digital.nhs.uk/services/general-practice-extraction-service" target="_blank">GPES</a></td>
+                <td>NHS England &amp; NHS Business Services Authority</td>
+                <td>England</td>
+                <td>Mid 2010s-present</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Monthly (for EPD dispensing data) to periodic/fortnightly (for specific GPES research extractions)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Mapped from National summary datasets down to Sub-ICB/Primary Care Network and specific GP Practice locations</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Individual prescription item dispense or individual coded diagnostic/clinical marker extracted from GP electronic records</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">All patients issued a prescription in primary care or included in specific national primary care audit extractions in England</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Exact chemical/generic drug names, therapeutic classifications, dosage quantities, costs, and the anonymised age/sex metadata profiles of patients receiving the medications</span></td>
+                <td>Mixed</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Health Outcomes/Validation. For example, if a simulation estimates a drop in local smoking rates or an uptick in respiratory illness due to local air pollution changes, researchers check the local prescribing trends for nicotine replacement therapies or inhalers to validate those behavioural shifts</span></td>
+                <td>Health outcomes</td>
+                <td>Public mental health</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Captures the massive volume of healthcare management that never reaches a hospital room</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Prescribing datasets show what was dispensed at a pharmacy, but cannot guarantee the patient actually took the medication. Standard open files lack cross-linked clinical diagnostic histories (e.g. you can see an inhaler was prescribed, but not whether it was explicitly used for asthma or COPD)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">To simulate and evaluate primary care medication costs, or validating localised chronic illness rates within a synthetic population by cross-referencing targeted cardiovascular or respiratory prescription volumes</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://digital.nhs.uk/data-and-information/publications/statistical/health-survey-for-england" target="_blank">Health Survey for England (HSE)</a></td>
+                <td>NHS England &amp; NatCen Social Research</td>
+                <td>England</td>
+                <td>1991–present</td>
+                <td>Annual</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">National, Regional, and Local Authority levels (via Postcode Sector clusters)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Individual survey respondent (adults and children)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Representative sample of ~8,000 adults and ~2,000 children living in private households annually</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Objective biological markers (blood pressure, BMI, blood/saliva samples), chronic health conditions, lifestyle choices (smoking, alcohol, diet), and general wellbeing</span></td>
+                <td>Open</td>
+                <td>Population Baseline / Health Outcomes</td>
+                <td>Donor microdata</td>
+                <td>Food/Tobacco/Alcohol</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Combines self-reported lifestyle metrics with physical measurements (height, weight, blood tests), avoiding self-reporting bias for clinical markers like hypertension and obesity</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Cross-sectional design prevents longitudinal individual tracking; sample sizes are too small for granular hyper-local (LSOA) estimations without spatial micro-simulation</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Joint probability distributions for agent-based models (e.g., correlating BMI, smoking status, age, and chronic condition prevalence to populate realistic agent profiles)</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics" target="_blank">Hospital Episode Statistics (HES)</a></td>
+                <td>NHS England</td>
+                <td>England</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">1989-present for Admitted Patient Care (APC); 2003-present for Outpatients</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Monthly provisional updates; finalised annual data refreshes</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Patient residence mapped down to LSOA boundaries, Integrated Care Boards, and specific treating NHS Trust sites</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Episode/Admission (Specifically, a Finished Consultant Episode - FCE). A single patient can have multiple episodes or admissions over time</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">All patients treated in NHS hospitals in England</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Clinical diagnoses, surgical procedures/operations, type of admission, discharge destination, total bed days, and demographic data</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Restricted/Secure Lab: High-level aggregated summary tables are open, but individual record-level data requires a formal application</span></td>
+                <td>Health Outcomes/Validation</td>
+                <td>Health outcomes</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Air pollution/Alcohol/Health inequalities/Public mental health</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Comprehensive coverage, large sample size allows for precise modelling of rare clinical conditions and long-term cohort linkage</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Lacks detailed primary care information, lifestyle parameters, or metrics on individuals who are sick but do not go to hospital</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Serving as the direct health outcome metric to model and evaluate the simulated impact of environmental air pollution spikes or regional alcohol control policies on emergency hospital admission trends</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.gov.uk/government/collections/english-indices-of-deprivation" target="_blank">IMD</a></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Ministry of Housing, Communities and Local Government</span></td>
+                <td>England</td>
+                <td>2000, 2004, 2007, 2010, 2015, 2019, 2025</td>
+                <td>Every 4 to 5 years (irregular)</td>
+                <td>LSOA</td>
+                <td>Area-level aggregate</td>
+                <td>The entire population of England</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Income, Employment, Education/Skills, Health/Disability, Crime, Barriers to Housing &amp; Services, and the Living Environment</span></td>
+                <td>Open</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Exposure/Contextual Enrichment; look up a simulated individual&#x27;s LSOA&#x27;s IMD decile to understand the level of socioeconomic deprivation they are exposed to in daily life</span></td>
+                <td>Contextual enrichment</td>
+                <td>Health inequalities</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Granular local geography, breaks down overall deprivation into specific themes</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">It is a relative ranking measure, not an absolute one (e.g. LSOA ranked 100 is not twice as poor as one ranked 200). It is area level, meaning it can suffer from ecological fallacy (not everyone in a deprived neighbourhood is personally deprived)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Track, simulate and validate health inequalities by grouping a synthetic population into national deprivation deciles</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://datacatalogue.ukdataservice.ac.uk/series/series/2000026#abstract" target="_blank">Labour Force Survey</a></td>
+                <td>ONS</td>
+                <td>UK</td>
+                <td>1992–present</td>
+                <td>Quarterly</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Standard government regions (e.g. North West, South West)</span></td>
+                <td>Individual and Household</td>
+                <td>People living in households in the UK</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Employment status, unemployment, economic inactivity, occupation, industry sector, hours worked, job training, qualifications, and core demographic details</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">End User Licence for standard anonymised research files</span></td>
+                <td>Donor microdata</td>
+                <td>Donor microdata</td>
+                <td>Healthy places/Health inequalities</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Large sample size; gives a highly detailed, multi-dimensional look at an individual&#x27;s working life</span></td>
+                <td>Sample survey</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Serving as the primary microdata source to simulate employment-related exposures, income distributions, and economic activity within a simulated regional workforce</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/personalandhouseholdfinances/incomeandwealth/methodologies/livingcostsandfoodsurvey" target="_blank">Living Costs and Food Survey (LCFS)</a></td>
+                <td>ONS &amp; DEFRA</td>
+                <td>UK-wide</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">1957–present (formerly Family Expenditure Survey)</span></td>
+                <td>Annual (continuous collection)</td>
+                <td>National and UK Region / Country level</td>
+                <td>Household and individual diary keeper</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">~5,000 private households in the UK per year keeping detailed 2-week spending diaries</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Detailed household income, expenditure items (food, alcohol, tobacco, utilities, transport), quantities of food purchased, and household demographic composition</span></td>
+                <td>Open</td>
+                <td>Socioeconomic / Behavioural Baseline</td>
+                <td>Donor microdata</td>
+                <td>Food/Alcohol</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Gold standard for granular household financial choices, expenditure patterns, and physical food purchasing quantities linked directly to income brackets</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">High survey burden leads to potential non-response bias; small annual sample size restricts hyper-local spatial disaggregation</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Modelling economic determinants of health within synthetic populations (e.g., spending capacity on healthy food, tobacco/alcohol expenditure, energy poverty)</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.metoffice.gov.uk/research/climate/maps-and-data/data" target="_blank">Met Office Climate Data Portal</a></td>
+                <td>Met Office</td>
+                <td>UK</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Historical records for the 19th/20th century to present</span></td>
+                <td>Historical observations are updated annually</td>
+                <td>Grid boxes from 1km^2 up to 60km^2</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Gridded spatial cells or specific meteorological station coordinates</span></td>
+                <td>N/A (Geographic/climate landmass monitoring)</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Daily/monthly temperature, precipitation/rainfall frequency, wind speed, solar radiation, humidity, and projected extreme weather events</span></td>
+                <td>Open</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Exposure/Contextual Enrichment; e.g. you can simulate how individuals react to a localised 10-day heatwave</span></td>
+                <td>Contextual enrichment</td>
+                <td>Climate</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Fine spatial resolution, allowing for realistic localised modelling</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Climate projections are probabilistic scenarios, not guaranteed weather forecasts</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Layering onto a synthetic population to estimate future spikes in heat-related CV hospitalisations or checking how climate change disproportionately impacts vulnerable, poorly insulated households</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.gov.uk/government/collections/national-diet-and-nutrition-survey" target="_blank">National Diet and Nutrition Survey (NDNS)</a></td>
+                <td>OHID (DHSC) &amp; Food Standards Agency (FSA)</td>
+                <td>UK-wide</td>
+                <td>2008–present (rolling programme)</td>
+                <td>Annual continuous rolling program</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">National UK level (with periodic nation boosts for Scotland, Wales, NI)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Individual survey participant (aged 1.5 years and over)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">~1,000 participants per year (500 adults, 500 children) keeping 4-day dietary diaries</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Exact nutrient intakes, macronutrient/micronutrient breakdowns, food group consumption, blood/urine nutritional status biomarkers, height, weight, and physical activity</span></td>
+                <td>Open</td>
+                <td>Socioeconomic / Behavioural Baseline</td>
+                <td>Donor microdata</td>
+                <td>Food</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Provides precise quantitative dietary intake data and biological nutritional validation rather than high-level general estimates</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Small annual sample size (requires combining multi-year waves for statistical power); 4-day diary may suffer from temporary under-reporting</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Parameterising detailed metabolic or nutritional attributes in synthetic agents to model dietary interventions, sodium/sugar reduction, or malnutrition risk factors</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.gov.wales/national-survey-wales" target="_blank">National Survey for Wales</a></td>
+                <td>Welsh Government</td>
+                <td>Wales</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">2012–present (successor to Welsh Health Survey)</span></td>
+                <td>Annual (continuous fieldwork)</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">National, Local Authority, and Local Health Board (LHB) levels</span></td>
+                <td>Individual survey respondent</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">~12,000 adults aged 16+ living in private households in Wales annually</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">General health, illness/disability, GP/hospital service satisfaction, smoking, drinking, physical activity, diet, active travel, and socioeconomic circumstances</span></td>
+                <td>Open</td>
+                <td>Population Baseline / Validation</td>
+                <td>Donor microdata</td>
+                <td>Alcohol/Tobacco/Food/Healthy places</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Large sample size relative to Welsh population size allows robust breakdown across Welsh Local Authorities and Health Boards</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Limited to Wales; relies primarily on self-reported health behaviours and status without physical health measurements</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Validating health indicators and policy impacts within Welsh subpopulations</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.gov.uk/government/collections/national-travel-survey-statistics" target="_blank">National Travel Survey</a></td>
+                <td>Department for Transport</td>
+                <td>Great Britain</td>
+                <td>1972–present</td>
+                <td>Annual</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Broad government regions, urban/rural indicators</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Individual, Household, Vehicle, and individual &#x27;Trips&#x27; (derived from a 7 day travel diary)</span></td>
+                <td>Private households in Great Britain</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Travel frequency, purpose of journeys, mode of transport used, distance travelled, time spent travelling, vehicle ownership, and basic socio-demographics</span></td>
+                <td>End User Licence</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Donor Microdata, allowing researchers to assign realistic, daily behavioural routines to simulated individuals</span></td>
+                <td>Donor microdata</td>
+                <td>Air pollution/Health places</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Includes a detailed 7-day travel diary component, making it reliable for capturing actual travel behaviour patterns</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Excludes commercial travel and only covers private households</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Evaluate exposure to environmental traffic pollution or to model changes in active travel habits across demographic groups</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.nomisweb.co.uk/" target="_blank">Nomis (Official Labour Market Statistics/ONS Data Portal)</a></td>
+                <td>ONS</td>
+                <td>UK</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Variable. Covers historic censuses (going back decades) up to contemporary, near real-time monthly data.</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Variable depending on the underlying set. Ranges from Monthly (e.g. Claimant Counts) to Quarterly/Annual (e.g. Annual Population Survey) to 10-yearly (Census data)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Scalable from Country/Regional down to Local Authority, Ward, and Output Area (OA/LSOA/MSOA) levels.</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Primarily Aggregated data (counts, rates and percentages for specific geographic boundaries), though derived from individual microdata responses</span></td>
+                <td>Whole UK population/UK resident workforce.</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Employment rates, unemployment dynamics, earnings, qualifications, industry/occupational sectors, benefit claimants, and local household characteristics.</span></td>
+                <td>Open</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Donor Microdata proxy/Population Frame Constraints/Policy Application</span></td>
+                <td>Population frame</td>
+                <td>Healthy places/Health inequalities</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Free, offers granular local-area geographic breakdowns</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Data is strictly aggregated to preserve privacy. Cannot download the raw microdata without secure lab access.</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Providing localised socioeconomic benchmarks to constrain geographic weights when building or validating regional synthetic populations.</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/methodologies/mortalitystatisticsinenglandandwalesqmi" target="_blank">ONS Mortality Statistics</a></td>
+                <td>ONS</td>
+                <td>England and Wales</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Continuous historical series dating back to 1838</span></td>
+                <td>Weekly and annually</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Scalable from national down to Region, Local Authority, and individual LSOA boundaries</span></td>
+                <td>Individual death registration record</td>
+                <td>The entire population of England and Wales</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Date of death, underlying cause of death, contributory causes of death, age, sex, place of death, and geographic area of residence</span></td>
+                <td>Mixed</td>
+                <td>Health Outcomes/Validation</td>
+                <td>Health outcomes</td>
+                <td>Tobacco/Alcohol/Food</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Near 100 pct complete coverage due to strict legal requirement to register deaths in the UK</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">It only records the final event; it lacks data on long-term disease progression, behavioural habits, or socioeconomic variables outside of geographic area metrics</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Used to populate baseline mortality risks or to validate synthetic population health outcomes by verifying that simulated death rates from specific diseases match local ONS geographic trends</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.ordnancesurvey.co.uk/products" target="_blank">Ordnance Survey Data Products</a></td>
+                <td>Ordnance Survey</td>
+                <td>Great Britain (England, Scotland, Wales)</td>
+                <td>Continuous active mapping</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Variable, depending on the product. Bi-annually/annually for some products, Monthly/Quarterly for others</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Scales from high-level national boundaries down to exact postcode coordinates and individual building structures</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Spatial features (vector points, polygons, lines) representing buildings, property polygons, road links, or green spaces</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">N/A (Geographic landmass and infrastructure tracking)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Building footprints, road and transport networks, administrative boundaries, public parks, sports facilities, play areas, topography/elevation, and address/postcode mapping data</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Mixed. A massive portfolio is completely Open Access, while highly granular datasets require a paid license or academic institutional access</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Exposure/Contextual Enrichment/Policy Application. It builds the physical map your simulated people live on</span></td>
+                <td>Contextual enrichment</td>
+                <td>Healthy places</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Provides exact Unique Property Reference Numbers that allow seamless linking of health records to precise physical properties</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Purely structural and geographic data; it contains zero demographic, behavioural, or health information, meaning it must be joined to Census or health survey data to be useful</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Calculating physical proximity to active travel infrastructure (cycle paths, paths) and public green spaces to enrich synthetic populations under the &#x27;Healthy Places&#x27; and urban policy themes</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/general-practice-data-hub/quality-outcomes-framework-qof" target="_blank">Quality and Outcomes Framework</a></td>
+                <td>NHS England</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">England (with parallel frameworks managed independently in Wales, Scotland and Northern Ireland)</span></td>
+                <td>2004-present</td>
+                <td>Annual</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">GP Practice level, Integrated Care Boards, regional and national levels</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">GP Practice aggregate (disease register counts, prevalence percentages, and treatment achievement rates)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">All patients registered at participating general practices in England (roughly 97 to 98 pct of the total registered population)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Disease prevalence registers across over 20 clinical areas (e.g. asthma, COPD, obesity, hypertension, diabetes, depression); public health indicators tracking local smoking prevalence and blood pressure monitoring metrics</span></td>
+                <td>Open</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Health Outcomes/Validation. If your synthetic population estimates that 14 pct of people in a town have asthma due to air pollution, you check your model against the local GP practices&#x27; QOF asthma registers to see if your simulation aligns with reality</span></td>
+                <td>Health outcomes</td>
+                <td>Air pollution/Tobacco</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Massive, near-universal sample size, useful for tracking public health behaviours like smoking or obesity at a hyper-local level</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">You cannot see individual patient journeys or overlapping conditions.</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Serving as a local benchmarking target to validate simulated geographic distributions of chronic respiratory conditions, CV diseases, and local smoking rates within a synthetic workforce model</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://publichealthscotland.scot/resources-and-tools/health-intelligence-and-data-management/national-data-catalogue/national-datasets/search-the-datasets/scottish-health-survey-shes/" target="_blank">Scottish Health Survey (SHeS)</a></td>
+                <td>Scottish Government &amp; Public Health Scotland</td>
+                <td>Scotland</td>
+                <td>1995–present</td>
+                <td>Annual</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">National, NHS Board, and Local Authority levels</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Individual survey respondent (adults and children)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">~4,000 adults and ~1,000 children living in private households in Scotland annually</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Cardiovascular disease, respiratory illness, mental wellbeing, diet, physical activity, alcohol, smoking, biological measurements, and dental health</span></td>
+                <td>Open</td>
+                <td>Population Baseline / Validation</td>
+                <td>Donor microdata</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Air pollution/Health place/Food/Tobacco/Health inequalities</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Includes biological module (blood/urine samples, blood pressure) alongside detailed lifestyle questions tailored to Scottish health priorities</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Restricted to Scottish population; cross-sectional snapshots cannot track individual trajectory histories directly over time</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Benchmarking chronic disease prevalence and health behaviors in Scottish synthetic populations, enabling cross-devolved nation comparisons</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://uk-air.defra.gov.uk/" target="_blank">UK-AIR</a></td>
+                <td>DEFRA</td>
+                <td>UK</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Variable. Near real-time hourly data up to continuous historical records dating back to the 1970s for some pollutant types</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Hourly/real-time for AURN, Annual for PCM models and the NAEI</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Highly granular spatial resolution, includes exact coordinate points for over 1,500 local monitoring stations, as well as 1km^2 grid squares for modelled background pollution maps across the UK</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Concentration levels of specific particles/gases at a given geographic coordinate or grid point</span></td>
+                <td>N/A (covers the physical land mass of the UK)</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Key outdoor air pollutants; Particulate Matter, Nitrogen Dioxide, Ozone, Sulphur Dioxide, Carbon Monoxide</span></td>
+                <td>Open</td>
+                <td>Exposure/Contextual Enrichment</td>
+                <td>Contextual enrichment</td>
+                <td>Air pollution</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Accurate local ambient data, high-frequency raw measurements</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Captures macro-outdoor environment levels only; it cannot tell you indoor air exposure, nor can it account for individual behavior differences (e.g. whether someone uses an air purifier)</span></td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Spatially joining localised annual pollutant concentrations to simulated home addresses in a synthetic population to model long-term respiratory and CV disease development</span></td>
+            </tr>
+            <tr>
+                <td><a href="https://www.understandingsociety.ac.uk/" target="_blank">Understanding Society</a></td>
+                <td>ISER</td>
+                <td>UK</td>
+                <td>2009–present</td>
+                <td>Annual</td>
+                <td>Individual (geo under licence)</td>
+                <td>Individual</td>
+                <td>Household survey</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Health, income, education, employment, wellbeing</span></td>
+                <td>Secure licence</td>
+                <td>Donor microdata</td>
+                <td>Donor microdata</td>
+                <td><span class="toggle-btn" onclick="toggleCell(this)">🔍</span><span class="cell-content cell-truncated">Food/Tobacco/Alcohol/Health inequalities/Public mental health</span></td>
+                <td>Rich longitudinal data</td>
+                <td>Sample survey</td>
+                <td>Synthetic population enrichment</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+function toggleCell(btn) {
+    const content = btn.nextElementSibling;
+    if (content.classList.contains('cell-truncated')) {
+        content.classList.remove('cell-truncated');
+    } else {
+        content.classList.add('cell-truncated');
+    }
+}
+</script>
+
 </body>
 </html>
