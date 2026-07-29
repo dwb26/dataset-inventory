@@ -1,0 +1,374 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Dataset</th>
+      <th>Organisation</th>
+      <th>Country</th>
+      <th>Years available</th>
+      <th>Update frequency</th>
+      <th>Geographical level</th>
+      <th>Unit of observation</th>
+      <th>Population covered</th>
+      <th>Main domains/variables</th>
+      <th>Access</th>
+      <th>Typical role</th>
+      <th>Strengths</th>
+      <th>Limitations</th>
+      <th>Example applications</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://www.ons.gov.uk/census" target="_blank" rel="noopener noreferrer">2021 Census</a></td>
+      <td>ONS</td>
+      <td>England/Wales</td>
+      <td>2021 (2011 for comparison)</td>
+      <td>10-yearly</td>
+      <td>OA, LSOA, MSOA, LA</td>
+      <td>Individual/Household (aggregated)</td>
+      <td>Whole population</td>
+      <td>Age, sex, ethnicity, education, tenure, household type, employment</td>
+      <td>Open</td>
+      <td>Population frame / Constraints</td>
+      <td>Complete coverage</td>
+      <td>Infrequent updates</td>
+      <td>Base population synthesis</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.understandingsociety.ac.uk/" target="_blank" rel="noopener noreferrer">Understanding Society</a></td>
+      <td>ISER</td>
+      <td>UK</td>
+      <td>2009–present</td>
+      <td>Annual</td>
+      <td>Individual (geo under licence)</td>
+      <td>Individual</td>
+      <td>Household survey</td>
+      <td>Health, income, education, employment, wellbeing</td>
+      <td>Secure licence</td>
+      <td>Donor microdata</td>
+      <td>Rich longitudinal data</td>
+      <td>Sample survey</td>
+      <td>Synthetic population enrichment</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.nomisweb.co.uk/" target="_blank" rel="noopener noreferrer">Nomis (Official Labour Market Statistics/ONS Data Portal)</a></td>
+      <td>ONS</td>
+      <td>UK</td>
+      <td>Variable. Covers historic censuses (going back decades) up to contemporary, near real-time monthly data.</td>
+      <td>Variable depending on the underlying set. Ranges from Monthly (e.g. Claimant Counts) to Quarterly/Annual (e.g. Annual Population Survey) to 10-yearly (Census data)</td>
+      <td>Scalable from Country/Regional down to Local Authority, Ward, and Output Area (OA/LSOA/MSOA) levels.</td>
+      <td>Primarily Aggregated data (counts, rates and percentages for specific geographic boundaries), though derived from individual microdata responses</td>
+      <td>Whole UK population/UK resident workforce.</td>
+      <td>Employment rates, unemployment dynamics, earnings, qualifications, industry/occupational sectors, benefit claimants, and local household characteristics.</td>
+      <td>Open</td>
+      <td>Donor Microdata proxy/Population Frame Constraints/Policy Application</td>
+      <td>Free, offers granular local-area geographic breakdowns</td>
+      <td>Data is strictly aggregated to preserve privacy. Cannot download the raw microdata without secure lab access.</td>
+      <td>Providing localised socioeconomic benchmarks to constrain geographic weights when building or validating regional synthetic populations.</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.ons.gov.uk/surveys/informationforhouseholdsandindividuals/householdsurveys/labourforcesurveys" target="_blank" rel="noopener noreferrer">Labour Force Survey</a></td>
+      <td>ONS</td>
+      <td>UK</td>
+      <td>1992–present</td>
+      <td>Quarterly</td>
+      <td>Standard government regions (e.g. North West, South West)</td>
+      <td>Individual and Household</td>
+      <td>People living in households in the UK</td>
+      <td>Employment status, unemployment, economic inactivity, occupation, industry sector, hours worked, job training, qualifications, and core demographic details</td>
+      <td>End User Licence for standard anonymised research files</td>
+      <td>Donor microdata</td>
+      <td>Large sample size; gives a highly detailed, multi-dimensional look at an individual's working life</td>
+      <td>Sample survey</td>
+      <td>Serving as the primary microdata source to simulate employment-related exposures, income distributions, and economic activity within a simulated regional workforce</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.gov.uk/government/collections/national-travel-survey-statistics" target="_blank" rel="noopener noreferrer">National Travel Survey</a></td>
+      <td>Department for Transport</td>
+      <td>Great Britain</td>
+      <td>1972–present</td>
+      <td>Annual</td>
+      <td>Broad government regions, urban/rural indicators</td>
+      <td>Individual, Household, Vehicle, and individual 'Trips' (derived from a 7 day travel diary)</td>
+      <td>Private households in Great Britain</td>
+      <td>Travel frequency, purpose of journeys, mode of transport used, distance travelled, time spent travelling, vehicle ownership, and basic socio-demographics</td>
+      <td>End User Licence</td>
+      <td>Donor Microdata, allowing researchers to assign realistic, daily behavioural routines to simulated individuals</td>
+      <td>Includes a detailed 7-day travel diary component, making it reliable for capturing actual travel behaviour patterns</td>
+      <td>Excludes commercial travel and only covers private households</td>
+      <td>Evaluate exposure to environmental traffic pollution or to model changes in active travel habits across demographic groups</td>
+    </tr>
+    <tr>
+      <td><a href="https://uk-air.defra.gov.uk/" target="_blank" rel="noopener noreferrer">UK-AIR</a></td>
+      <td>DEFRA</td>
+      <td>UK</td>
+      <td>Variable. Near real-time hourly data up to continuous historical records dating back to the 1970s for some pollutant types</td>
+      <td>Hourly/real-time for AURN, Annual for PCM models and the NAEI</td>
+      <td>Highly granular spatial resolution, includes exact coordinate points for over 1,500 local monitoring stations, as well as 1km^2 grid squares for modelled background pollution maps across the UK</td>
+      <td>Concentration levels of specific particles/gases at a given geographic coordinate or grid point</td>
+      <td>N/A (covers the physical land mass of the UK)</td>
+      <td>Key outdoor air pollutants; Particulate Matter, Nitrogen Dioxide, Ozone, Sulphur Dioxide, Carbon Monoxide</td>
+      <td>Open</td>
+      <td>Exposure/Contextual Enrichment</td>
+      <td>Accurate local ambient data, high-frequency raw measurements</td>
+      <td>Captures macro-outdoor environment levels only; it cannot tell you indoor air exposure, nor can it account for individual behavior differences (e.g. whether someone uses an air purifier)</td>
+      <td>Spatially joining localised annual pollutant concentrations to simulated home addresses in a synthetic population to model long-term respiratory and CV disease development</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.gov.uk/government/collections/english-indices-of-deprivation" target="_blank" rel="noopener noreferrer">IMD</a></td>
+      <td>Ministry of Housing, Communities and Local Government</td>
+      <td>England</td>
+      <td>2000, 2004, 2007, 2010, 2015, 2019, 2025</td>
+      <td>Every 4 to 5 years (irregular)</td>
+      <td>LSOA</td>
+      <td>Area-level aggregate</td>
+      <td>The entire population of England</td>
+      <td>Income, Employment, Education/Skills, Health/Disability, Crime, Barriers to Housing & Services, and the Living Environment</td>
+      <td>Open</td>
+      <td>Exposure/Contextual Enrichment; look up a simulated individual's LSOA's IMD decile to understand the level of socioeconomic deprivation they are exposed to in daily life</td>
+      <td>Granular local geography, breaks down overall deprivation into specific themes</td>
+      <td>It is a relative ranking measure, not an absolute one (e.g. LSOA ranked 100 is not twice as poor as one ranked 200). It is area level, meaning it can suffer from ecological fallacy (not everyone in a deprived neighbourhood is personally deprived)</td>
+      <td>Track, simulate and validate health inequalities by grouping a synthetic population into national deprivation deciles</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.metoffice.gov.uk/services/data/dataportal" target="_blank" rel="noopener noreferrer">Met Office Climate Data Portal</a></td>
+      <td>Met Office</td>
+      <td>UK</td>
+      <td>Historical records for the 19th/20th century to present</td>
+      <td>Historical observations are updated annually</td>
+      <td>Grid boxes from 1km^2 up to 60km^2</td>
+      <td>Gridded spatial cells or specific meteorological station coordinates</td>
+      <td>N/A (Geographic/climate landmass monitoring)</td>
+      <td>Daily/monthly temperature, precipitation/rainfall frequency, wind speed, solar radiation, humidity, and projected extreme weather events</td>
+      <td>Open</td>
+      <td>Exposure/Contextual Enrichment; e.g. you can simulate how individuals react to a localised 10-day heatwave</td>
+      <td>Fine spatial resolution, allowing for realistic localised modelling</td>
+      <td>Climate projections are probabilistic scenarios, not guaranteed weather forecasts</td>
+      <td>Layering onto a synthetic population to estimate future spikes in heat-related CV hospitalisations or checking how climate change disproportionately impacts vulnerable, poorly insulated households</td>
+    </tr>
+    <tr>
+      <td><a href="https://environment.data.gov.uk/" target="_blank" rel="noopener noreferrer">Defra Data Services Platform</a></td>
+      <td>Department for Environment, Food & Rural Affairs & Environment Agency</td>
+      <td>England (with links provided to parallel services in Scotland, Wales, and Northern Ireland)</td>
+      <td>Variable. Generally covers active asset registers, real-time gauges, and historical modelling series spanning the last few decades</td>
+      <td>Variable, depending on the dataset. Ranges from real-time/live feeds to annual administrative releases</td>
+      <td>Highly granular spatial data.</td>
+      <td>Spatial features (points, lines, polygons) or individual localised monitoring metrics (e.g., water quality test sample, local permit ratings)</td>
+      <td>N/A (Physical environmental, land, and asset tracking)</td>
+      <td>Flood risk areas, river and sea levels, water quality monitoring indices, biodiversity and ecosystem tracking, waste management permits, and industrial pollution inventories</td>
+      <td>Open/Publicly accessible</td>
+      <td>Exposure/Contextual Enrichment. For example, once your synthetic population has residential addresses, you can overlay the Environmental Agency's flood risk maps to determine which simulated households face high environmental or climate vulnerabilities</td>
+      <td>Provides official regulatory data on corporate pollution and catchment health</td>
+      <td>Requires significant GIS/spatial data processing skills to clean and filter for health modelling</td>
+      <td>Spatially joining localised flood risk zones or water catchment pollution profiles to synthetic household locations to evaluate the intersection of environmental hazards with socioeconomic deprivation</td>
+    </tr>
+    <tr>
+      <td><a href="https://osdatahub.os.uk/" target="_blank" rel="noopener noreferrer">Ordnance Survey Data Products</a></td>
+      <td>Ordnance Survey</td>
+      <td>Great Britain (England, Scotland, Wales)</td>
+      <td>Continuous active mapping</td>
+      <td>Variable, depending on the product. Bi-annually/annually for some products, Monthly/Quarterly for others</td>
+      <td>Scales from high-level national boundaries down to exact postcode coordinates and individual building structures</td>
+      <td>Spatial features (vector points, polygons, lines) representing buildings, property polygons, road links, or green spaces</td>
+      <td>N/A (Geographic landmass and infrastructure tracking)</td>
+      <td>Building footprints, road and transport networks, administrative boundaries, public parks, sports facilities, play areas, topography/elevation, and address/postcode mapping data</td>
+      <td>Mixed. A massive portfolio is completely Open Access, while highly granular datasets require a paid license or academic institutional access</td>
+      <td>Exposure/Contextual Enrichment/Policy Application. It builds the physical map your simulated people live on</td>
+      <td>Provides exact Unique Property Reference Numbers that allow seamless linking of health records to precise physical properties</td>
+      <td>Purely structural and geographic data; it contains zero demographic, behavioural, or health information, meaning it must be joined to Census or health survey data to be useful</td>
+      <td>Calculating physical proximity to active travel infrastructure (cycle paths, paths) and public green spaces to enrich synthetic populations under the 'Healthy Places' and urban policy themes</td>
+    </tr>
+    <tr>
+      <td><a href="https://digital.nhs.uk/data-and-information/data-tools-and-services/data-services/hospital-episode-statistics" target="_blank" rel="noopener noreferrer">Hospital Episode Statistics (HES)</a></td>
+      <td>NHS England</td>
+      <td>England</td>
+      <td>1989-present for Admitted Patient Care (APC); 2003-present for Outpatients</td>
+      <td>Monthly provisional updates; finalised annual data refreshes</td>
+      <td>Patient residence mapped down to LSOA boundaries, Integrated Care Boards, and specific treating NHS Trust sites</td>
+      <td>Episode/Admission (Specifically, a Finished Consultant Episode - FCE). A single patient can have multiple episodes or admissions over time</td>
+      <td>All patients treated in NHS hospitals in England</td>
+      <td>Clinical diagnoses, surgical procedures/operations, type of admission, discharge destination, total bed days, and demographic data</td>
+      <td>Restricted/Secure Lab: High-level aggregated summary tables are open, but individual record-level data requires a formal application</td>
+      <td>Health Outcomes/Validation</td>
+      <td>Comprehensive coverage, large sample size allows for precise modelling of rare clinical conditions and long-term cohort linkage</td>
+      <td>Lacks detailed primary care information, lifestyle parameters, or metrics on individuals who are sick but do not go to hospital</td>
+      <td>Serving as the direct health outcome metric to model and evaluate the simulated impact of environmental air pollution spikes or regional alcohol control policies on emergency hospital admission trends</td>
+    </tr>
+    <tr>
+      <td><a href="https://digital.nhs.uk/data-and-information/publications/statistical/quality-and-outcomes-framework-achievement-prevalence-and-exceptions-data" target="_blank" rel="noopener noreferrer">Quality and Outcomes Framework</a></td>
+      <td>NHS England</td>
+      <td>England (with parallel frameworks managed independently in Wales, Scotland and Northern Ireland)</td>
+      <td>2004-present</td>
+      <td>Annual</td>
+      <td>GP Practice level, Integrated Care Boards, regional and national levels</td>
+      <td>GP Practice aggregate (disease register counts, prevalence percentages, and treatment achievement rates)</td>
+      <td>All patients registered at participating general practices in England (roughly 97 to 98 pct of the total registered population)</td>
+      <td>Disease prevalence registers across over 20 clinical areas (e.g. asthma, COPD, obesity, hypertension, diabetes, depression); public health indicators tracking local smoking prevalence and blood pressure monitoring metrics</td>
+      <td>Open</td>
+      <td>Health Outcomes/Validation. If your synthetic population estimates that 14 pct of people in a town have asthma due to air pollution, you check your model against the local GP practices' QOF asthma registers to see if your simulation aligns with reality</td>
+      <td>Massive, near-universal sample size, useful for tracking public health behaviours like smoking or obesity at a hyper-local level</td>
+      <td>You cannot see individual patient journeys or overlapping conditions.</td>
+      <td>Serving as a local benchmarking target to validate simulated geographic distributions of chronic respiratory conditions, CV diseases, and local smoking rates within a synthetic workforce model</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths" target="_blank" rel="noopener noreferrer">ONS Mortality Statistics</a></td>
+      <td>ONS</td>
+      <td>England and Wales</td>
+      <td>Continuous historical series dating back to 1838</td>
+      <td>Weekly and annually</td>
+      <td>Scalable from national down to Region, Local Authority, and individual LSOA boundaries</td>
+      <td>Individual death registration record</td>
+      <td>The entire population of England and Wales</td>
+      <td>Date of death, underlying cause of death, contributory causes of death, age, sex, place of death, and geographic area of residence</td>
+      <td>Mixed</td>
+      <td>Health Outcomes/Validation</td>
+      <td>Near 100 pct complete coverage due to strict legal requirement to register deaths in the UK</td>
+      <td>It only records the final event; it lacks data on long-term disease progression, behavioural habits, or socioeconomic variables outside of geographic area metrics</td>
+      <td>Used to populate baseline mortality risks or to validate synthetic population health outcomes by verifying that simulated death rates from specific diseases match local ONS geographic trends</td>
+    </tr>
+    <tr>
+      <td><a href="https://digital.nhs.uk/services/general-practice-extraction-service-gpes" target="_blank" rel="noopener noreferrer">GPES/EPD</a></td>
+      <td>NHS England & NHS Business Services Authority</td>
+      <td>England</td>
+      <td>Mid 2010s-present</td>
+      <td>Monthly (for EPD dispensing data) to periodic/fortnightly (for specific GPES research extractions)</td>
+      <td>Mapped from National summary datasets down to Sub-ICB/Primary Care Network and specific GP Practice locations</td>
+      <td>Individual prescription item dispense or individual coded diagnostic/clinical marker extracted from GP electronic records</td>
+      <td>All patients issued a prescription in primary care or included in specific national primary care audit extractions in England</td>
+      <td>Exact chemical/generic drug names, therapeutic classifications, dosage quantities, costs, and the anonymised age/sex metadata profiles of patients receiving the medications</td>
+      <td>Mixed</td>
+      <td>Health Outcomes/Validation. For example, if a simulation estimates a drop in local smoking rates or an uptick in respiratory illness due to local air pollution changes, researchers check the local prescribing trends for nicotine replacement therapies or inhalers to validate those behavioural shifts</td>
+      <td>Captures the massive volume of healthcare management that never reaches a hospital room</td>
+      <td>Prescribing datasets show what was dispensed at a pharmacy, but cannot guarantee the patient actually took the medication. Standard open files lack cross-linked clinical diagnostic histories (e.g. you can see an inhaler was prescribed, but not whether it was explicitly used for asthma or COPD)</td>
+      <td>To simulate and evaluate primary care medication costs, or validating localised chronic illness rates within a synthetic population by cross-referencing targeted cardiovascular or respiratory prescription volumes</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.nhsbsa.nhs.uk/prescription-data/dispensing-data/english-prescribing-data-epd" target="_blank" rel="noopener noreferrer">English Prescribing Data (EPD)</a></td>
+      <td>NHS Business Services Authority (NHSBSA)</td>
+      <td>England</td>
+      <td>2014-present</td>
+      <td>Monthly</td>
+      <td>GP Practice level</td>
+      <td>Individual prescription item presentation per practice</td>
+      <td>All patients issued a prescription in primary care in England that was successfully submitted for reimbursement</td>
+      <td>British National Formulary codes, chemical substance description, number of items prescribed, total quantity dispensed, and Net Ingredient Cost</td>
+      <td>Open</td>
+      <td>Health Outcomes/Validation. If your synthetic population predicts a spike in respiratory or alcohol-related issues in a specific region, you validate that against the real-world volume of inhalers or liver-related medications prescribed by local practices</td>
+      <td>Universal coverage of all NHS community prescriptions</td>
+      <td>Strictly practice-level aggregated statistics, meaning you cannot see individual patient demographics (age, gender, ethnicity) or cross-reference comorbid conditions on a single person</td>
+      <td>Evaluating the hyper-local financial and clinical impact of chronic illnesses within a synthetic population model by benchmarking against regional BNF therapeutic group prescribing rates</td>
+    </tr>
+    <tr>
+      <td><a href="https://digital.nhs.uk/data-and-information/publications/statistical/adult-psychiatric-morbidity-survey" target="_blank" rel="noopener noreferrer">Adult Psychiatric Morbidity Survey (APMS)</a></td>
+      <td>NHS England & NatCen Social Research</td>
+      <td>England</td>
+      <td>1993, 2000, 2007, 2014, 2023–2024</td>
+      <td>Periodic (~every 7 years)</td>
+      <td>National and Regional (Strategic Health Authority level / Postcode Sector primary sampling units)</td>
+      <td>Individual adult survey respondent</td>
+      <td>Private household residents in England aged 16 and over</td>
+      <td>Screening & diagnostic assessments for common mental disorders (CMD), PTSD, psychosis, ADHD, autism, self-harm, suicidal ideation, alcohol/drug dependencies, service use, and medication</td>
+      <td>Restricted</td>
+      <td>Health Outcomes/Validation</td>
+      <td>Gold-standard national benchmark for psychiatric prevalence in the community, capturing untreated mental illness that never appears in primary or secondary care records</td>
+      <td>Low sample frequency (every 7 years), excludes institutional populations (prisons, care homes, communal establishments), and relies on self-reported symptoms/screening tools</td>
+      <td>Validating baseline mental health distributions, comorbidities, and untreated psychiatric illness prevalence across synthetic sub-demographics</td>
+    </tr>
+    <tr>
+      <td><a href="https://cprd.com/" target="_blank" rel="noopener noreferrer">Clinical Practice Research Datalink (CPRD)</a></td>
+      <td>MHRA & NIHR</td>
+      <td>UK-wide (England, Scotland, Wales, NI)</td>
+      <td>1987–present</td>
+      <td>Continuous (updated monthly/daily)</td>
+      <td>GP Practice level mapped to national/regional boundaries; linkable to LSOA deprivation measures</td>
+      <td>Individual longitudinal patient record</td>
+      <td>Over 60 million total anonymised patients (~20% active UK population coverage across participating GP practices)</td>
+      <td>Clinical diagnoses (Read/Snomed codes), primary care prescriptions, lab tests, immunisations, symptoms, secondary care referrals, and linked HES/cancer registration/mortality data</td>
+      <td>Restricted</td>
+      <td>Health Outcomes/Validation</td>
+      <td>Unrivalled real-world longitudinal coverage with deep medical histories, multi-decade follow-ups, and individual-level linkage across primary, hospital, and death registries</td>
+      <td>Requires rigorous protocol approval (RDG) and license fees; subject to variable clinical coding quality, missing secondary care nuance, and potential GP practice sampling bias</td>
+      <td>Primary ground-truth data for parameterising disease incidence transitions, co-morbidity matrices, and validating synthetic longitudinal patient trajectories</td>
+    </tr>
+    <tr>
+      <td><a href="https://digital.nhs.uk/data-and-information/publications/statistical/health-survey-for-england" target="_blank" rel="noopener noreferrer">Health Survey for England (HSE)</a></td>
+      <td>NHS England & NatCen Social Research</td>
+      <td>England</td>
+      <td>1991–present</td>
+      <td>Annual</td>
+      <td>National, Regional, and Local Authority levels (via Postcode Sector clusters)</td>
+      <td>Individual survey respondent (adults and children)</td>
+      <td>Representative sample of ~8,000 adults and ~2,000 children living in private households annually</td>
+      <td>Objective biological markers (blood pressure, BMI, blood/saliva samples), chronic health conditions, lifestyle choices (smoking, alcohol, diet), and general wellbeing</td>
+      <td>Open</td>
+      <td>Population Baseline / Health Outcomes</td>
+      <td>Combines self-reported lifestyle metrics with physical measurements (height, weight, blood tests), avoiding self-reporting bias for clinical markers like hypertension and obesity</td>
+      <td>Cross-sectional design prevents longitudinal individual tracking; sample sizes are too small for granular hyper-local (LSOA) estimations without spatial micro-simulation</td>
+      <td>Joint probability distributions for agent-based models (e.g., correlating BMI, smoking status, age, and chronic condition prevalence to populate realistic agent profiles)</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.gov.wales/national-survey-wales" target="_blank" rel="noopener noreferrer">National Survey for Wales</a></td>
+      <td>Welsh Government</td>
+      <td>Wales</td>
+      <td>2012–present (successor to Welsh Health Survey)</td>
+      <td>Annual (continuous fieldwork)</td>
+      <td>National, Local Authority, and Local Health Board (LHB) levels</td>
+      <td>Individual survey respondent</td>
+      <td>~12,000 adults aged 16+ living in private households in Wales annually</td>
+      <td>General health, illness/disability, GP/hospital service satisfaction, smoking, drinking, physical activity, diet, active travel, and socioeconomic circumstances</td>
+      <td>Open</td>
+      <td>Population Baseline / Validation</td>
+      <td>Large sample size relative to Welsh population size allows robust breakdown across Welsh Local Authorities and Health Boards</td>
+      <td>Limited to Wales; relies primarily on self-reported health behaviours and status without physical/biological sample validation</td>
+      <td>Validating and parameterising synthetic individual health profiles, lifestyle behaviours, and public service utilization specifically for Welsh geographic cohorts</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.gov.scot/collections/scottish-health-survey/" target="_blank" rel="noopener noreferrer">Scottish Health Survey (SHeS)</a></td>
+      <td>Scottish Government & Public Health Scotland</td>
+      <td>Scotland</td>
+      <td>1995–present</td>
+      <td>Annual</td>
+      <td>National, NHS Board, and Local Authority levels</td>
+      <td>Individual survey respondent (adults and children)</td>
+      <td>~4,000 adults and ~1,000 children living in private households in Scotland annually</td>
+      <td>Cardiovascular disease, respiratory illness, mental wellbeing, diet, physical activity, alcohol, smoking, biological measurements, and dental health</td>
+      <td>Open</td>
+      <td>Population Baseline / Validation</td>
+      <td>Includes biological module (blood/urine samples, blood pressure) alongside detailed lifestyle questions tailored to Scottish health priorities</td>
+      <td>Restricted to Scottish population; cross-sectional snapshots cannot track individual trajectory histories directly over time</td>
+      <td>Benchmarking chronic disease prevalence and health behaviors in Scottish synthetic populations, enabling cross-devolved nation comparisons</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.ons.gov.uk/surveys/informationforhouseholdsandindividuals/householdsurveys/livingcostsandfoodsurveylcfs" target="_blank" rel="noopener noreferrer">Living Costs and Food Survey (LCFS)</a></td>
+      <td>ONS & DEFRA</td>
+      <td>UK-wide</td>
+      <td>1957–present (formerly Family Expenditure Survey)</td>
+      <td>Annual (continuous collection)</td>
+      <td>National and UK Region / Country level</td>
+      <td>Household and individual diary keeper</td>
+      <td>~5,000 private households in the UK per year keeping detailed 2-week spending diaries</td>
+      <td>Detailed household income, expenditure items (food, alcohol, tobacco, utilities, transport), quantities of food purchased, and household demographic composition</td>
+      <td>Open</td>
+      <td>Socioeconomic / Behavioural Baseline</td>
+      <td>Gold standard for granular household financial choices, expenditure patterns, and physical food purchasing quantities linked directly to income brackets</td>
+      <td>High survey burden leads to potential non-response bias; small annual sample size restricts hyper-local spatial disaggregation</td>
+      <td>Modelling economic determinants of health within synthetic populations (e.g., spending capacity on healthy food, tobacco/alcohol expenditure, energy poverty)</td>
+    </tr>
+    <tr>
+      <td><a href="https://www.gov.uk/government/collections/national-diet-and-nutrition-survey" target="_blank" rel="noopener noreferrer">National Diet and Nutrition Survey (NDNS)</a></td>
+      <td>OHID (DHSC) & Food Standards Agency (FSA)</td>
+      <td>UK-wide</td>
+      <td>2008–present (rolling programme)</td>
+      <td>Annual continuous rolling program</td>
+      <td>National UK level (with periodic nation boosts for Scotland, Wales, NI)</td>
+      <td>Individual survey participant (aged 1.5 years and over)</td>
+      <td>~1,000 participants per year (500 adults, 500 children) keeping 4-day dietary diaries</td>
+      <td>Exact nutrient intakes, macronutrient/micronutrient breakdowns, food group consumption, blood/urine nutritional status biomarkers, height, weight, and physical activity</td>
+      <td>Open</td>
+      <td>Socioeconomic / Behavioural Baseline</td>
+      <td>Provides precise quantitative dietary intake data and biological nutritional validation rather than high-level general estimates</td>
+      <td>Small annual sample size (requires combining multi-year waves for statistical power); 4-day diary may suffer from temporary under-reporting</td>
+      <td>Parameterising detailed metabolic or nutritional attributes in synthetic agents to model dietary interventions, sodium/sugar reduction, or malnutrition risk factors</td>
+    </tr>
+  </tbody>
+</table>
