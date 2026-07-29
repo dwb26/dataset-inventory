@@ -399,6 +399,7 @@
 
 
 # %%
+# %%
 import pandas as pd
 
 # Define the columns requested by the PI
@@ -1205,9 +1206,68 @@ df["Dataset"] = df["Dataset"].apply(
     )
 )
 
-# Export to HTML string (escape=False ensures raw <a> tags are rendered by browsers)
-html_output = df.to_html(escape=False, index=False)
+# Render base HTML table
+raw_html_table = df.to_html(escape=False, index=False, classes="styled-table")
 
-# Write out to HTML file
+# --- Define Blue Header & Zebra Striping CSS Theme ---
+css_styles = """
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.85em;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+    }
+    .styled-table thead tr {
+        background-color: #1f4e78; /* Deep Blue Header */
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #dddddd;
+        vertical-align: top;
+    }
+    /* Alternating shaded rows (zebra striping) */
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f7fa; /* Light blue tint */
+    }
+    .styled-table tbody tr:nth-of-type(odd) {
+        background-color: #ffffff;
+    }
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #1f4e78;
+    }
+    /* Hover highlight */
+    .styled-table tbody tr:hover {
+        background-color: #e6f2ff;
+        transition: background-color 0.15s ease-in-out;
+    }
+    /* Styling links to match theme */
+    .styled-table a {
+        color: #0056b3;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .styled-table a:hover {
+        text-decoration: underline;
+    }
+</style>
+"""
+
+# Combine CSS and Table into complete HTML page
+complete_html = f"<!DOCTYPE html>\n<html>\n<head>\n{css_styles}\n</head>\n<body>\n{raw_html_table}\n</body>\n</html>"
+
+# Write out to file
 with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html_output)
+    f.write(complete_html)
