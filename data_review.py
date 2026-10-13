@@ -1,5 +1,7 @@
 # Consolidated datasets list (23 unique datasets)
-# %%
+
+import html
+
 data = [
     {
         "Dataset": "2021 Census",
