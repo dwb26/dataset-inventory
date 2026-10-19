@@ -575,7 +575,7 @@ new_rows = [
         "Update frequency": "Continuous",
         "Geographical level": TBC,
         "Unit of observation": "Household shopping purchases",
-        "Population covered": "Representative panel of households recording all shopping",
+        "Population covered": "Representative panel of GB households (55,000 as of 2026, per the provider)",
         "Main domains/variables": "Food and grocery purchasing by household, linked to household characteristics",
         "Access": "Commercial licence (very expensive)",
         "Typical role": "Behavioural baseline (food purchasing)",
@@ -672,7 +672,7 @@ url_map.update({
     "Next Steps (Longitudinal Study of Young People in England)": "https://cls.ucl.ac.uk/cls-studies/next-steps/",
     "Avon Longitudinal Study of Parents and Children (ALSPAC)": "https://www.bristol.ac.uk/alspac/",
     "Born in Bradford": "https://borninbradford.nhs.uk/",
-    "Kantar Worldpanel (Worldpanel by Numerator)": "https://www.kantar.com/Press-Center/Numerator-launches-Worldpanel-by-Numerator-brand",
+    "Kantar Worldpanel (Worldpanel by Numerator)": "https://worldpanelbynumerator.com/europe/uk",
 })
 
 # Cohort studies: access via UK Data Service; CLS overview
